@@ -1,0 +1,59 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <section class="col-md-3 user_profile_left">
+    <div class="profile_img">
+      <%= gravatar_for @user %>
+    </div>
+
+    <div class="status">
+      <span>称号 <span>バルクモンスター</span></span>
+      <div>
+        <div>
+          <span>身長: <span>165</span>cm</span>
+        </div>
+        <div>
+          <span>体重 <span>65</span>kg</span>
+          <span>前月比 <span>-1.4</span>kg</span>
+        </div>
+        <div>
+          <span>体脂肪率 <span>20</span>%</span>
+          <span>前月比 <span>-2.5</span>%</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="user_profile_right col-md-9">
+    <div class="row">
+      <h1 class="col-md-4"><%= @user.name %></h1>
+      <button type="button" name="button" class="col-md-2">フォロー</button>
+      <button type="button" name="button" class="col-md-2">弟子入り</button>
+    </div>
+
+    <ul class="row list-inline">
+      <li><span>投稿 <span>700</span>件</span></li>
+      <li><a href="#">フォロー <span>500</span>人</a></li>
+      <li><a href="#">フォロワー <span>300</span>人</a></li>
+      <li><a href="#">弟子 <span>124</span>人</a></li>
+    </ul>
+
+    <div>
+      <span>増量中。細マッチョを目指して毎日筋トレ中!</span>
+      <span class="signup_day">2020年7月から、Muscle Platformを利用しています</span>
+    </div>
+  </section>
+</div>
+
+<div class="profile_garaly">
+  <div class="">
+    <a href="#"><span>全て</span></a>
+    <a href="#"><span>筋肉</span></a>
+    <a href="#"><span>食事</span></a>
+  </div>
+  <div class="">
+   <article class="">
+
+   </article>
+  </div>
+</div>

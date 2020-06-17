@@ -1,2 +1,38 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<% provide(:title, 'Sign up') %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 form_frame">
+    <%= form_with model: @user, url: signup_path, local: true do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <h1>アカウント作成</h1>
+      <div class="form-group">
+        <%= f.label :name, "ユーザー名" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, "パスワード(確認用)" %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+
+      <%= f.submit "登録する", class: "btn btn-primary signup_btn" %>
+
+      <p>登録することで、Muscle Platformの利用規約およびプライバシー規約に同意するものとします。</p>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <p class="col-md-4 col-md-offset-4 text-center login_frame">アカウントをお持ちですか？
+  <a href="#">ログインする</a></p>
+</div>

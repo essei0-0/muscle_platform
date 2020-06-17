@@ -4,8 +4,16 @@
 /* universal */
 
 $app-main-color: #f25a27;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
 body {
   font-family: sans-serif;
+  background: rgb(248, 249, 250);
 }
 
 section {
@@ -23,37 +31,19 @@ textarea {
   }
 }
 
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #777;
-}
-
 p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
 
 a {
-  text-decoration: none;
-  color: $app-main-color;
+  color: #000;
+  &:hover {
+    opacity: .6;
+    text-decoration: none;
+  }
 }
+
 
 .jumbotron {
   background-image: url("/images/home_bg.jpg");
@@ -74,10 +64,15 @@ a {
   }
 }
 
+.row {
+  margin: 0;
+  margin-bottom: 60px;
+}
+
 /* header */
 
 header {
-  line-height: 90px;
+  line-height: 50px;
 }
 
 .nav > li > a {
@@ -86,6 +81,7 @@ header {
 
 
 .navbar {
+  border-radius: 0px;
   margin-bottom: 0;
   opacity: .9;
 }
@@ -99,7 +95,6 @@ header {
   text-transform: uppercase;
   text-shadow: 2px 2px 3px #000;
   letter-spacing: 1px;
-  padding-top: 9px;
   font-weight: bold;
   &:hover {
     opacity: .8;
@@ -107,4 +102,176 @@ header {
   }
 }
 
+.main_contents {
+  margin-top: 60px;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
 /* home */
+
+/* show.html */
+.user_profile_left {
+  padding: 0;
+
+  > div.profile_img {
+    text-align: center;
+
+    .gravatar {
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+  }
+
+  .status {
+
+    > span {
+      display: block;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    > div {
+
+      > div {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        > span {
+
+          &:nth-child(2) {
+            font-size: 12px;
+            opacity: 0.8;
+          }
+          > span {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.user_profile_right {
+  padding: 0;
+  padding-left: 100px;
+
+  > div:first-child {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h1 {
+      font-size: 23px;
+      font-weight: bold;
+      line-height: 40px;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    > button {
+      display: block;
+      margin-right: 20px;
+    }
+  }
+
+  > ul {
+      margin-bottom: 30px;
+
+    > li{
+      padding-right: 10px;
+
+      > span, a {
+        > span {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  > div {
+      > span {
+        display: block;
+        margin-bottom: 20px;
+
+        &.signup_day {
+          font-size: 0.8em;
+          opacity: .6;
+        }
+      }
+  }
+}
+
+div.profile_garaly {
+  > div {
+      display: flex;
+      justify-content: space-around;
+    > a {
+      text-align: center;
+      padding: 10px;
+
+    }
+  }
+}
+
+/* forms */
+
+.form_frame {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 2px;
+  padding: 32px 40px;
+
+  h1 {
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 0.8em;
+    margin-top: 20px;
+  }
+
+  .signup_btn {
+    width: 100%;
+  }
+}
+
+.login_frame {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 2px;
+  padding: 25px 0;
+  > a {
+    color: #0095f6;
+  }
+}
+
+/* error_messages */
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}

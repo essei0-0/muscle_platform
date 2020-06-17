@@ -9,4 +9,9 @@ module ApplicationHelper
       page_title + "｜" + base_title
     end
   end
+
+  # ページごとの背景クラスを返します。
+  def bg_style(bg_url = 'container-fruid')
+    bg_url
+  end
 end

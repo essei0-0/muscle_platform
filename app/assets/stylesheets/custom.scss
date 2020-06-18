@@ -5,10 +5,9 @@
 
 $app-main-color: #f25a27;
 
-@mixin box_sizing {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
+.px-0 {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 body {
@@ -22,13 +21,6 @@ section {
 
 textarea {
   resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-  margin-bottom: 10px;
-  }
 }
 
 p {
@@ -52,15 +44,21 @@ a {
   height: 845px;
   padding-top: 0;
   margin-bottom: 0;
-  h1 {
-  color: $app-main-color;
-  font-size: 46px;
-  font-weight: bold;
-  line-height: 120px;
-  letter-spacing: 5px;
-  opacity: .6;
-  text-shadow: 2px 2px 3px #000;
 
+  .home_message {
+
+    h1 {
+    color: $app-main-color;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    line-height: 80px;
+    opacity: .6;
+    text-shadow: 2px 2px 3px #000;
+    }
+  }
+  p {
+    font-size: 14px;
   }
 }
 
@@ -113,7 +111,7 @@ header {
   float: left;
   width: 100%;
   margin-top: 45px;
-  @include box_sizing;
+  box-sizing:         border-box;
 }
 
 /* home */
@@ -228,13 +226,13 @@ div.profile_garaly {
 /* forms */
 
 .form_frame {
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, .2);
-  border-radius: 2px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 5px;
   padding: 32px 40px;
 
   h1 {
-    font-size: 1.8em;
+    font-size: 1.4em;
     margin-top: 0;
     margin-bottom: 20px;
     text-align: center;
@@ -251,13 +249,25 @@ div.profile_garaly {
 }
 
 .login_frame {
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, .2);
-  border-radius: 2px;
+  background: rgba(255,255,255, .1);
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 5px;
   padding: 25px 0;
+
   > a {
     color: #0095f6;
   }
+}
+
+.login_frame_black {
+  background: rgba(0,0,0, .1);
+  border: 1px solid rgba(255, 255, 255, .1);
+  color: rgba(255,255,255, .8);
+}
+
+.login_frame_white {
+  background: rgba(255,255,255, .1);
+  color: rgba(0,0,0, .8);
 }
 
 /* error_messages */

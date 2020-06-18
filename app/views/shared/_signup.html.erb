@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="form_frame <%= col %>">
+    <%= form_with model: @user, url: signup_path, local: true do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <h1>アカウント作成</h1>
+      <div class="form-group">
+        <%= f.label :name, "ユーザー名" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, "パスワード(確認用)" %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+
+      <%= f.submit "登録する", class: "btn btn-primary signup_btn" %>
+
+      <p>登録することで、Muscle Platformの利用規約およびプライバシー規約に同意するものとします。</p>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <p class="text-center login_frame <%= col + ' ' + frame_design %>">アカウントをお持ちですか？
+  <a href="#">ログインする</a></p>
+</div>

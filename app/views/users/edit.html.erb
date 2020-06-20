@@ -1,0 +1,64 @@
+<% provide(:title, "設定") %>
+
+<div class="row">
+  <ul class="nav nav-pills nav-stacked col-md-3 form_frame edit_nav">
+    <li class="active"> <a href="#profile" class="edit_link" data-toggle="pill">プロフィールを編集</a> </li>
+    <li> <a href="#password" class="edit_link" data-toggle="pill">パスワードを編集</a> </li>
+  </ul>
+
+    <div class="col-md-6 tab-content form_frame edit_main">
+      <div class="tab-pane active" id="profile">
+        <%= form_with model: @user, url: edit_user_path(@user), local: true do |f| %>
+
+          <h1>プロフィールを編集</h1>
+          <div class="form-group">
+            <%= f.label :name, "ユーザー名" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :url, "ウェブサイト" %>
+            <%= f.url_field :url, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :bio, "自己紹介" %>
+            <%= f.text_area :bio, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :tel, "電話番号" %>
+            <%= f.telephone_field :tel, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :email, "メールアドレス" %>
+            <%= f.email_field :email, class: "form-control" %>
+          </div>
+
+
+          <%= f.submit "更新する", disabled:true, class: "btn btn-primary signup_btn edit_profile_btn" %>
+
+        <% end %>
+      </div>
+
+      <div class="tab-pane" id="password">
+        <%= form_with model: @user, url: edit_user_path(@user), local: true do |f| %>
+
+          <h1>パスワードを編集</h1>
+          <div class="form-group">
+            <%= f.label :password, "パスワード" %>
+            <%= f.password_field :password, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation, "パスワード(確認用)" %>
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+          </div>
+
+          <%= f.submit "更新する", disabled:true, class: "btn btn-primary signup_btn edit_password_btn" %>
+
+        <% end %>
+      </div>
+
+    </div>
+</div>

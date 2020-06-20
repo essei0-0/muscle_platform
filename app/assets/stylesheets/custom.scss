@@ -12,7 +12,7 @@ $app-main-color: #f25a27;
 
 body {
   font-family: sans-serif;
-  background: rgb(248, 249, 250);
+  background: #fafafa;
 }
 
 section {
@@ -67,6 +67,11 @@ a {
   margin-bottom: 60px;
 }
 
+/* application */
+.main_contents {
+  margin-top: 60px;
+}
+
 /* header */
 
 header {
@@ -98,10 +103,6 @@ header {
     opacity: .8;
     text-decoration: none;
   }
-}
-
-.main_contents {
-  margin-top: 60px;
 }
 
 /* miscellaneous */
@@ -249,7 +250,7 @@ div.profile_garaly {
 }
 
 .login_frame {
-  background: rgba(255,255,255, .1);
+  background: rgba(255,255,255, 1);
   border: 1px solid rgba(0, 0, 0, .1);
   border-radius: 5px;
   padding: 25px 0;
@@ -283,5 +284,40 @@ div.profile_garaly {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
+  }
+}
+
+/* edit */
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background: transparent;
+  border-left: 3px solid $app-main-color;
+  border-radius: 0px;
+  color: $app-main-color;
+  opacity: 1;
+  font-weight: bold;
+}
+
+.nav-pills{
+  padding-left: 0;
+  padding-right: 0;
+
+  > li {
+
+    > a.edit_link {
+      font-size: 1.3em;
+      padding:15px 30px;
+      width: 100%;
+
+      &:hover{
+        background: rgba(242,90,39,.1);
+        color: $app-main-color;
+        font-weight: bold;
+        opacity: 1;
+      }
+    }
+
+
+
   }
 }

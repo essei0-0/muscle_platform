@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts
   end
 
   def new
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = "Muscle Platformへようこそ！"
-      redirect_to @user
+      redirect_to root_url
 
     else
       render 'new'
@@ -51,17 +52,8 @@ private
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :url, :bio, :tel)
   end
 
-    # ログイン済みユーザーかどうか確認
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "ログインしてください"
-      redirect_to login_url
-    end
-  end
-
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(current_user) unless @user == current_user
+    redirect_to(root_url) unless current_user?(@user)
   end
 end

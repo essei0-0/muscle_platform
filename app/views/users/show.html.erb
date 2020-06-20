@@ -51,9 +51,12 @@
     <a href="#"><span>筋肉</span></a>
     <a href="#"><span>食事</span></a>
   </div>
-  <div class="">
-   <article class="">
 
-   </article>
-  </div>
+  <article class="row">
+    <% if @user.microposts.any? %>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+    <% end %>
+  </article>
 </div>

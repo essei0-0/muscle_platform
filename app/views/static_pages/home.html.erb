@@ -1,12 +1,18 @@
-<div class="row">
-  <div class="home_message col-xs-7 px-0">
-    <h1 class="text-left">Muscle Platformで
-      <br>理想の筋肉を</h1>
+<% if logged_in? %>
+<%= render 'shared/feed', { col: @col } %>
+
+
+<% else %>
+  <div class="row">
+    <div class="home_message col-xs-7 px-0">
+      <h1 class="text-left">Muscle Platformで
+        <br>理想の筋肉を</h1>
+    </div>
+
+    <div class="col-xs-5 px-0">
+      <%= render 'shared/signup', { col: @col, frame_design:@frame_design } %>
+    </div>
+
+
   </div>
-
-  <div class="col-xs-5 px-0">
-    <%= render 'shared/signup', { col: @col, frame_design:@frame_design } %>
-  </div>
-
-
-</div>
+<% end %>

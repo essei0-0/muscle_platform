@@ -27,6 +27,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     log_in_as(@user)
     follow_redirect!
-    assert_template 'users/show'
+    assert_template 'static_pages/home'
   end
 end

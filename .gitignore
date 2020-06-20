@@ -33,5 +33,7 @@
 # Ignore Spring files.
 /spring/*.pid
 
-#下記を追記
 /.env
+
+# アップロードされたテスト画像を無視する
+/public/uploads

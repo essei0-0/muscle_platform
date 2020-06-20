@@ -1,7 +1,7 @@
 <div class="row">
   <div class="form_frame <%= col %>">
     <%= form_with model: @user, url: signup_path, local: true do |f| %>
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
 
       <h1>アカウント作成</h1>
       <div class="form-group">
@@ -32,5 +32,5 @@
 </div>
 <div class="row">
   <p class="text-center login_frame <%= col + ' ' + frame_design %>">アカウントをお持ちですか？
-  <a href="#">ログインする</a></p>
+  <%= link_to "ログインする", login_path %></p>
 </div>

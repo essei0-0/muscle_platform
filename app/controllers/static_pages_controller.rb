@@ -2,7 +2,6 @@ class StaticPagesController < ApplicationController
 
   def home
     if logged_in?
-      @bg_url = 'contaier-fruid'
       @col = 'col-md-offset-2 col-md-8'
       @micropost  = current_user.microposts.build
       @feed_items = current_user.feed

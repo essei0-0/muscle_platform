@@ -3,7 +3,13 @@ class MicropostsController < ApplicationController
   before_action :correct_user,   only: :destroy
 
   def new
+    @bg_url = 'mask'
     @micropost = current_user.microposts.build
+
+  end
+
+  def show
+    @micropost = Micropost.find_by(id: params[:id])
   end
 
   def create

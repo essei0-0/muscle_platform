@@ -68,6 +68,14 @@ a {
 }
 
 /* application */
+div.mask {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,.4);
+
+}
+
 .main_contents {
   margin-top: 60px;
 }
@@ -367,4 +375,34 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+/* new_micropost */
+div.post_frame {
+  background: #fff;
+  border-radius: 20px;
+  margin: 0 auto;
+  padding: 30px;
+  width: 45%;
+}
+
+div.post_field {
+  height: 350px;
+  margin-bottom: 20px;
+  width: 100%;
+  > textarea {
+    border: 0px none;
+    font-size: 1.5em;
+    height: 100%;
+    width: 100%;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+div.picture > input {
+  margin-bottom: 20px;
+}
+input.post_btn {
+  width: 100%;
 }

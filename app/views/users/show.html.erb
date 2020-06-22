@@ -54,8 +54,8 @@
 
   <article class="row">
     <% if @user.microposts.any? %>
-      <ol class="microposts">
-        <%= render @microposts %>
+      <ol class="microposts row">
+        <%= render @microposts, { col:@col } %>
       </ol>
     <% end %>
   </article>

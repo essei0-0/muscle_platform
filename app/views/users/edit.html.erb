@@ -8,7 +8,7 @@
 
     <div class="col-md-6 tab-content form_frame edit_main">
       <div class="tab-pane active" id="profile">
-        <%= form_with model: @user, url: edit_user_path(@user), local: true do |f| %>
+        <%= form_with model: @user, local: true,  multipart: true do |f| %>
 
           <h1>プロフィールを編集</h1>
           <div class="form-group">
@@ -36,6 +36,11 @@
             <%= f.email_field :email, class: "form-control" %>
           </div>
 
+          <div class="form-group">
+            <%= f.label :image, 'プロフィール画像' %>
+            <%= f.file_field :image_name, accept: 'image/jpeg,image/gif,image/png' %>
+          </div>
+
 
           <%= f.submit "更新する", disabled:true, class: "btn btn-primary signup_btn edit_profile_btn" %>
 
@@ -43,7 +48,7 @@
       </div>
 
       <div class="tab-pane" id="password">
-        <%= form_with model: @user, url: edit_user_path(@user), local: true do |f| %>
+        <%= form_with model: @user, local: true do |f| %>
 
           <h1>パスワードを編集</h1>
           <div class="form-group">

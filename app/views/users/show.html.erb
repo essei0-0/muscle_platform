@@ -2,7 +2,7 @@
 <div class="row">
   <section class="col-md-3 user_profile_left">
     <div class="profile_img">
-      <%= gravatar_for @user %>
+      <%= image_tag @user.image_name.url if @user.image_name? %>
     </div>
 
     <div class="status">
@@ -27,35 +27,35 @@
   <section class="user_profile_right col-md-9">
     <div class="row">
       <h1 class="col-md-4"><%= @user.name %></h1>
-      <button type="button" name="button" class="col-md-2">フォロー</button>
+      <%= render 'follow_form' if logged_in? %>
       <button type="button" name="button" class="col-md-2">弟子入り</button>
     </div>
 
     <ul class="row list-inline">
-      <li><span>投稿 <span>700</span>件</span></li>
-      <li><a href="#">フォロー <span>500</span>人</a></li>
-      <li><a href="#">フォロワー <span>300</span>人</a></li>
+      <li><span>投稿 <span><%= @user.microposts.count %></span>件</span></li>
+      <li><a href="<%= following_user_path(@user) %>">フォロー <span><%= @user.following.count %></span>人</a></li>
+      <li><a href="<%= followers_user_path(@user) %>">フォロワー <span id="followers"><%= @user.followers.count %></span>人</a></li>
       <li><a href="#">弟子 <span>124</span>人</a></li>
     </ul>
 
     <div>
-      <span>増量中。細マッチョを目指して毎日筋トレ中!</span>
-      <span class="signup_day">2020年7月から、Muscle Platformを利用しています</span>
+      <span><%= @user.bio %></span>
+      <span class="signup_day"><%= @user.created_at %>から、Muscle Platformを利用しています</span>
     </div>
   </section>
 </div>
 
 <div class="profile_garaly">
-  <div class="">
-    <a href="#"><span>全て</span></a>
-    <a href="#"><span>筋肉</span></a>
-    <a href="#"><span>食事</span></a>
-  </div>
+  <ul class="garaly_label">
+    <li><a href="#"><span>全て</span></a></li>
+    <li><a href="#"><span>筋肉</span></a></li>
+    <li><a href="#"><span>食事</span></a></li>
+  </ul>
 
   <article class="row">
     <% if @user.microposts.any? %>
-      <ol class="microposts row">
-        <%= render @microposts, { col:@col } %>
+      <ol class="microposts_garaly">
+        <%= render @microposts %>
       </ol>
     <% end %>
   </article>

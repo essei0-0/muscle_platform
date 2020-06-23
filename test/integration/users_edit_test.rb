@@ -15,7 +15,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               password:              "foo",
                                               password_confirmation: "bar" } }
 
-    assert_template 'users/edit'
+
+    assert_redirected_to edit_user_url
+    follow_redirect!
   end
 
   test "successful edit" do
@@ -45,6 +47,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               password:              "",
                                               password_confirmation: "" } }
     assert_not flash.empty?
+    assert_redirected_to edit_user_url
+    follow_redirect!
     assert_template 'users/edit'
     @user.reload
     assert_equal name,  @user.name

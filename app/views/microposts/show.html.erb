@@ -1,16 +1,32 @@
-<div class="row">
-  <div class="col-md-offset-2 col-md-8">
-    <div class="content">
-      <p><%= @micropost.content %></p>
+<div class="micropost_detail">
+  <article class="">
+    <header>
+      <% if @micropost.user.image_name? %>
+      <div class="micropost_profile_img">
+        <%= image_tag @micropost.user.image_name.url %>
+      </div>
+      <% end %>
+      <div class="">
+        <%= @micropost.user.name %>
+      </div>
+    </header>
+    <div class="micropost_main_img">
       <%= image_tag @micropost.picture.url if @micropost.picture? %>
     </div>
-
-    <div class="timestamp">
-      Posted <%= time_ago_in_words(@micropost.created_at) %> ago.
+    <div class="micropost_content">
+      <span><%= @micropost.content %></span>
+    </div>
+    <div class="">
+      <div class="timestamp">
+        <span><%= time_ago_in_words(@micropost.created_at) %> ago.</span>
+      </div>
       <% if current_user?(@micropost.user) %>
-        <%= link_to "delete", @micropost, method: :delete,
+      <div class="micropost_delete">
+        <%= link_to "削除する", @micropost, method: :delete,
                                          data: { confirm: "削除しますか？" } %>
+      </div>
       <% end %>
     </div>
-  </div>
+
+  </article>
 </div>

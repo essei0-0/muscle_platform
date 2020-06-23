@@ -23,6 +23,11 @@ textarea {
   resize: vertical;
 }
 
+li, ol {
+  list-style: none;
+  padding: 0;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -97,7 +102,6 @@ header {
   opacity: .9;
 }
 
-
 #logo {
   float: left;
   margin-right: 10px;
@@ -125,6 +129,49 @@ header {
 
 /* home */
 
+.microposts_feed {
+    width: 614px;
+    margin: 0 auto;
+  > li {
+    margin-bottom: 60px;
+    > article {
+      border: 1px solid rgba(0,0,0,.2);
+      > a {
+        &:hover {
+          color: inherit;
+        }
+        >header {
+          display: flex;
+          padding: 20px;
+
+
+          >div.feed_profile_img {
+            margin-right: 20px;
+            height: 50px;
+            width: 50px;
+
+            > img {
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+        div.feed_main_img {
+          margin-bottom: 20px;
+        }
+        div.feed_content {
+          padding: 20px;
+        }
+        div.timestamp {
+          font-size: 0.7em;
+          opacity: .7;
+          padding: 20px;
+        }
+      }
+    }
+  }
+}
 /* show.html */
 .user_profile_left {
   padding: 0;
@@ -132,9 +179,12 @@ header {
   > div.profile_img {
     text-align: center;
 
-    .gravatar {
+    img {
       border-radius: 50%;
+      height: 150px;
       margin-bottom: 20px;
+      object-fit: cover;
+      width: 150px;
     }
   }
 
@@ -221,13 +271,40 @@ header {
 }
 
 div.profile_garaly {
-  > div {
-      display: flex;
-      justify-content: space-around;
-    > a {
-      text-align: center;
+  > ul.garaly_label {
+    border-top: 1px solid rgba(0,0,0,.2);
+    display: flex;
+    justify-content: center;
+    line-height: 60px;
+    margin-bottom: 30px;
+    a{
+      margin-right: 60px;
       padding: 10px;
 
+    }
+  }
+
+  > article {
+    ol.microposts_garaly {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    >li {
+      margin-bottom: 30px;
+      > article {
+        border: 1px solid rgba(0, 0, 0, .1);
+        height: 350px;
+        width: 350px;
+        div.garaly_img {
+          height: 100%;
+          > img {
+           object-fit: cover;
+           height: 100%;
+           width: 100%;
+          }
+         }
+        }
+      }
     }
   }
 }
@@ -330,38 +407,6 @@ div.profile_garaly {
   }
 }
 
-/* microposts */
-
-.microposts {
-  list-style: none;
-  padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-  }
-  .user {
-    margin-top: 5em;
-    padding-top: 0;
-  }
-  .content {
-    display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
-  }
-  .timestamp {
-    color: $gray-light;
-    display: block;
-    margin-left: 60px;
-  }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
-  }
-}
 
 aside {
   textarea {
@@ -405,4 +450,48 @@ div.picture > input {
 }
 input.post_btn {
   width: 100%;
+}
+
+/* micropost_show */
+.micropost_detail {
+    width: 614px;
+    margin: 0 auto;
+  > article {
+    border: 1px solid rgba(0,0,0,.2);
+    header {
+      display: flex;
+      padding: 20px;
+
+      >div.micropost_profile_img {
+        margin-right: 20px;
+        height: 50px;
+        width: 50px;
+
+        > img {
+          border-radius: 50%;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    div.micropost_main_img {
+      margin-bottom: 20px;
+    }
+    div.micropost_content {
+      padding: 0 20px;
+    }
+    div {
+      display: flex;
+      justify-content: space-between;
+      > div.timestamp {
+        font-size: 0.7em;
+        opacity: .7;
+        padding: 20px;
+      }
+      > div.micropost_delete {
+        padding: 20px;
+      }
+
+    }
+  }
 }

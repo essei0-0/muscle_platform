@@ -45,4 +45,12 @@ $(document).on('turbolinks:load', function() {　
     console.log('addclass!');
   });
 
+  $('#user_image_name').bind('change', function() {
+      var size_in_megabytes = this.files[0].size/1024/1024;
+      if (size_in_megabytes > 5) {
+        alert('ファイルサイズが大きすぎます');
+      }
+      $('.edit_profile_btn').prop('disabled', false);
+    });
+
 });

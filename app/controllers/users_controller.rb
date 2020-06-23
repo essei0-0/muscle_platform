@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_class, only:[:new, :create]
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update,  :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
 
   def set_class
@@ -40,17 +40,31 @@ class UsersController < ApplicationController
   def update
    if @user.update_attributes(user_params)
      flash[:success] = "更新に成功しました"
-     render 'edit'
+     redirect_to @user
    else
-     flash[:success] = "更新に失敗しました"
+     flash.now[:success] = "更新に失敗しました"
      render 'edit'
    end
  end
 
+ def following
+    @title = "フォロー"
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "フォロワー"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
+  end
+
 private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :url, :bio, :tel)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :url, :bio, :tel, :image_name)
   end
 
   def correct_user

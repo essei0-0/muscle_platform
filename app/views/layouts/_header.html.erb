@@ -6,16 +6,16 @@
         <% if logged_in? %>
         <li><%= link_to "ホーム", root_url %></li>
         <li><%= link_to "投稿", new_micropost_path %></li>
-        <li><%= link_to "メッセージ", '#' %></li>
-        <li><%= link_to "通知", '#' %></li>
+        <li><%= link_to "メッセージ", prepare_path(:title => 'メッセージ') %></li>
+        <li><%= link_to "通知", prepare_path(:title => '通知') %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             その他 <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to "設定", edit_user_path(current_user) %></li>
-            <li><%= link_to "使い方", about_path %></li>
-            <li><%= link_to "ヘルプ", help_path %></li>
+            <li><%= link_to "使い方", prepare_path(:title => '使い方') %></li>
+            <li><%= link_to "ヘルプ", prepare_path(:title => 'ヘルプ') %></li>
             <li class="divider"></li>
             <li>
               <%= link_to "ログアウト", logout_path, method: :delete %>
@@ -25,7 +25,7 @@
          <li><%= link_to "プロフィール", current_user %></li>
        <% else %>
          <li><%= link_to "使い方", about_path %></li>
-         <li><%= link_to "お問い合わせ", help_path %></li>
+         <li><%= link_to "ヘルプ", help_path %></li>
          <li><%= link_to "ログイン", login_path %></li>
        <% end %>
       </ul>

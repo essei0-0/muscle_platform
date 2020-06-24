@@ -11,6 +11,15 @@
         <div class="">
           <%= micropost.user.name %>
         </div>
+        <% if current_user.teacher == micropost.user %>
+        <div class="relationship">
+          <span>師匠</span>
+        </div>
+        <% elsif current_user.student?(micropost.user) %>
+        <div class="relationship">
+          <span>弟子</span>
+        </div>
+        <% end %>
       </header>
       <div class="feed_main_img">
         <%= image_tag micropost.picture.url if micropost.picture? %>

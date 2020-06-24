@@ -1,0 +1,9 @@
+<% unless current_user?(@user) %>
+  <div id="teacher_form">
+  <% if current_user.teacher == @user %>
+    <%= render 'not_teacher' %>
+  <% else %>
+    <%= render 'teacher' %>
+  <% end %>
+  </div>
+<% end %>

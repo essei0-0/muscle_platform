@@ -50,4 +50,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
+
+  test "should redirect students when not logged in" do
+    get students_user_path(@user)
+    assert_redirected_to login_url
+  end
+
 end

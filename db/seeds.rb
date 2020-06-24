@@ -29,5 +29,8 @@ users = User.all
 user  = users.first
 following = users[2..50]
 followers = users[3..40]
+students = users[2..50]
+
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+students.each { |student| user.student(student) }

@@ -8,7 +8,15 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_one :active_deep_relationships, class_name:  "DeepRelationship",
+                                   foreign_key: "student_id",
+                                   dependent:   :destroy
 
+  has_many :passive_deep_relationships, class_name: "DeepRelationship",
+                                foreign_key: "teacher_id",
+                                dependent:   :destroy
+  has_one :teacher, through: :active_deep_relationships
+  has_many :students, through: :passive_deep_relationships
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   mount_uploader :image_name, ImagenameUploader
@@ -71,6 +79,27 @@ class User < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # ユーザーを弟子にする
+  def student(other_user)
+    students << other_user
+  end
+
+  # ユーザーの師匠をやめる
+  def not_student(other_user)
+    passive_deep_relationships.find_by(student_id: other_user.id).destroy
+  end
+
+  # 現在のユーザーが弟子であればtrueを返す
+  def student?(other_user)
+    students.include?(other_user)
+  end
+
+
+  # ユーザーの弟子をやめる
+  def not_teacher(other_user)
+    active_deep_relationships.destroy
   end
 
   private

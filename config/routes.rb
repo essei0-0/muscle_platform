@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
+  get  '/prepare',   to: 'static_pages#prepare'
   get  '/signup',  to: 'users#new'
   post '/signup', to: 'users#create'
   get    '/login',   to: 'sessions#new'
@@ -10,9 +11,10 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users, only: [:show, :edit, :update] do
     member do
-      get :following, :followers
+      get :following, :followers, :students
     end
   end
   resources :microposts, only: [:show, :new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :deep_relationships, only: [:create, :destroy]
 end

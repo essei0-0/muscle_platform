@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_class, only:[:new, :create]
-  before_action :logged_in_user, only: [:edit, :update,  :following, :followers]
+  before_action :logged_in_user, only: [:edit, :update,  :following, :followers, :teacher, :students]
   before_action :correct_user,   only: [:edit, :update]
 
   def set_class
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
      flash[:success] = "更新に成功しました"
      redirect_to @user
    else
-     flash.now[:success] = "更新に失敗しました"
+     flash.now[:danger] = "更新に失敗しました"
      render 'edit'
    end
  end
@@ -60,6 +60,20 @@ class UsersController < ApplicationController
     @users = @user.followers
     render 'show_follow'
   end
+
+  # def teacher
+  #    @title = "師匠"
+  #    @user  = User.find(params[:id])
+  #    @teacher = @user.teacher
+  #    redirect_to @teacher
+  #  end
+
+   def students
+     @title = "弟子"
+     @user  = User.find(params[:id])
+     @users = @user.students
+     render 'show_students'
+   end
 
 private
 

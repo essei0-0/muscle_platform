@@ -78,4 +78,15 @@ class UserTest < ActiveSupport::TestCase
       assert_not michael.feed.include?(post_unfollowed)
     end
   end
+
+  test "should student and not_student a user" do
+    michael = users(:michael)
+    archer  = users(:archer)
+    assert_not michael.student?(archer)
+    michael.student(archer)
+    assert michael.student?(archer)
+    assert_equal archer.teacher, michael
+    michael.not_student(archer)
+    assert_not michael.student?(archer)
+  end
 end

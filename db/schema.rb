@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_142327) do
+ActiveRecord::Schema.define(version: 2020_06_23_104656) do
+
+  create_table "deep_relationships", force: :cascade do |t|
+    t.integer "teacher_id"
+    t.integer "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_deep_relationships_on_student_id"
+    t.index ["teacher_id", "student_id"], name: "index_deep_relationships_on_teacher_id_and_student_id", unique: true
+    t.index ["teacher_id"], name: "index_deep_relationships_on_teacher_id"
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"

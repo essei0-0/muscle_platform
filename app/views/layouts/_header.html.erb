@@ -23,7 +23,9 @@
         </li>
          <li>
            <%= link_to current_user, class:"nav_icon_bg" do %>
+           <% if current_user.image_name? %>
             <%= image_tag current_user.image_name.url, class: "nav_icon" %>
+           <% end%>
            <% end %>
          </li>
          <li class="new_post_bg dropdown">

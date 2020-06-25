@@ -20,9 +20,9 @@ class UsersController < ApplicationController
     log_in @user
 
     if @user.save
-      flash[:success] = "Muscle Platformへようこそ！"
+      log_in @user
+      flash[:success] = "Muscle Platformへ"
       redirect_to root_url
-
     else
       render 'new'
     end

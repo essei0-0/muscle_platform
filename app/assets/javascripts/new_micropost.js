@@ -8,4 +8,16 @@ $(document).on('turbolinks:load', function() {
       $('.post_btn').prop('disabled', false);
     });
 
+    $('.mask').hide();
+
+    $('#muscle_post').click(function(){
+      $('.mask').show();
+    });
+
+    $('#muscle_post_close').click( function () {
+			$('.mask').hide();
+		});
+    $('.mask').click( function () {
+			$(this).hide();
+    });
 });

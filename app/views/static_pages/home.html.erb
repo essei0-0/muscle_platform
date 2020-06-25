@@ -1,7 +1,5 @@
 <% if logged_in? %>
-<%= render 'shared/feed', { col: @col } %>
-
-
+<%= render 'shared/feed' %>
 <% else %>
   <div class="row">
     <div class="home_message col-xs-7 px-0">

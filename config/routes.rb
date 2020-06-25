@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get :following, :followers, :students
     end
   end
-  resources :microposts, only: [:show, :new, :create, :destroy]
+  resources :microposts, only: [:show, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :deep_relationships, only: [:create, :destroy]
 end

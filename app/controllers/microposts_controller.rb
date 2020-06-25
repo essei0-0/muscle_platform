@@ -1,12 +1,6 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :destroy]
+  before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
-
-  def new
-    @bg_url = 'mask'
-    @micropost = current_user.microposts.build
-
-  end
 
   def show
     @micropost = Micropost.find_by(id: params[:id])
@@ -25,7 +19,7 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     flash[:success] = "投稿を削除しました！"
-    redirect_to request.referrer || root_url
+    redirect_to root_url
   end
 
   private

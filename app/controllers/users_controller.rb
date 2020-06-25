@@ -4,11 +4,6 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update,  :following, :followers, :teacher, :students]
   before_action :correct_user,   only: [:edit, :update]
 
-  def set_class
-    @col = 'col-md-offset-4 col-md-4'
-    @frame_design = ''
-  end
-
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts
@@ -84,5 +79,10 @@ private
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user)
+  end
+
+  def set_class
+    @col = 'col-md-offset-4 col-md-4'
+    @frame_design = ''
   end
 end

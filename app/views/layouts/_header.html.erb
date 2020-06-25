@@ -1,28 +1,54 @@
-<header class="navbar fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "Muscle Platform", root_path, id: "logo", class: "notranslate" %>
+<header class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container header_flex">
+    <div class="header_logo">
+      <%= link_to "Muscle Platform", root_path, id: "logo", class: "notranslate" %>
+    </div>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav">
         <% if logged_in? %>
-        <li><%= link_to "ホーム", root_url %></li>
-        <li><%= link_to "投稿", new_micropost_path %></li>
-        <li><%= link_to "メッセージ", prepare_path(:title => 'メッセージ') %></li>
-        <li><%= link_to "通知", prepare_path(:title => '通知') %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            その他 <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "設定", edit_user_path(current_user) %></li>
-            <li><%= link_to "使い方", prepare_path(:title => '使い方') %></li>
-            <li><%= link_to "ヘルプ", prepare_path(:title => 'ヘルプ') %></li>
-            <li class="divider"></li>
-            <li>
-              <%= link_to "ログアウト", logout_path, method: :delete %>
-            </li>
-           </ul>
+        <li>
+          <%= link_to root_url do %>
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to prepare_path(:title => 'メッセージ') do %>
+          <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to prepare_path(:title => '通知') do %>
+          <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+          <% end %>
+        </li>
+         <li>
+           <%= link_to current_user, class:"nav_icon_bg" do %>
+            <%= image_tag current_user.image_name.url, class: "nav_icon" %>
+           <% end %>
          </li>
-         <li><%= link_to "プロフィール", current_user %></li>
+         <li class="new_post_bg dropdown">
+           <a href="#" class="dropdown-toggle" id="new_post" data-toggle="dropdown">
+             <span>+</span>
+           </a>
+           <ul class="dropdown-menu">
+             <li><a id="muscle_post">投稿</a></li>
+             <li><%= link_to "体重管理", prepare_path(:title => '体重管理') %></li>
+             <li><%= link_to "食事管理", prepare_path(:title => '食事管理') %></li>
+            </ul>
+         </li>
+         <li class="dropdown">
+           <a href="#" class="dropdown-toggle setting" data-toggle="dropdown">
+             ▼
+           </a>
+           <ul class="dropdown-menu">
+             <li><%= link_to "設定", edit_user_path(current_user) %></li>
+             <li><%= link_to "使い方", prepare_path(:title => '使い方') %></li>
+             <li><%= link_to "ヘルプ", prepare_path(:title => 'ヘルプ') %></li>
+             <li>
+               <%= link_to "ログアウト", logout_path, method: :delete %>
+             </li>
+           </ul>
+          </li>
        <% else %>
          <li><%= link_to "使い方", about_path %></li>
          <li><%= link_to "ヘルプ", help_path %></li>

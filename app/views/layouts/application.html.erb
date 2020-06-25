@@ -17,6 +17,7 @@
           <div class="alert alert-<%= message_type %>"><%= message %></div>
         <% end %>
         <%= yield %>
+        <%= render 'microposts/new' %>
       </div>
     </div>
 

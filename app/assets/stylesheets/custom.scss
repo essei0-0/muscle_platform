@@ -224,7 +224,7 @@ ul.dropdown-menu {
               height: 100%;
             }
           }
-          > div.relationship {
+          > div.feed_relationship {
             margin-left: auto;
           }
         }
@@ -370,7 +370,7 @@ div.profile_garaly {
         div.garaly_img {
           height: 100%;
           > img {
-           object-fit: cover;
+           object-fit: contain;
            height: 100%;
            width: 100%;
           }
@@ -575,6 +575,106 @@ div.mask {
         padding: 20px;
       }
 
+    }
+  }
+}
+
+/* relationship */
+div.relationship {
+  background: #fff;
+  border: 1px solid rgba(128,128,128,.2);
+  border-bottom: transparent;
+  > div.relationship_sticky {
+    background: #fff;
+    position: sticky;
+    top: 60px;
+    > div.relationship_profile {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      position: sticky;
+      top: 60px;
+      > div.relationship_back_btn {
+          color: $app-main-color;
+          font-size: 1.5em;
+          margin-right: 5%;
+      }
+      > div.relationship_profile_img {
+          margin-right: 2%;
+          height: 70px;
+          width: 70px;
+
+        > img {
+          border: 1px solid rgba(128,128,128,.4);
+          border-radius: 50%;
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      > div.relationship_profile_name {
+        font-size: 1.3em;
+        font-weight: bold;
+      }
+    }
+    > ul.relationship_nav {
+
+      > li {
+        text-align: center;
+        width: 35%;
+        &:last-child {
+          width: 30%;
+        }
+      }
+    }
+  }
+  > div.relationship_users_frame {
+    > ul.relationship_users {
+      padding-left: 0;
+      > li.relationship_user {
+        display: flex;
+        border-bottom: 1px solid rgba(128,128,128,.2);
+        padding: 15px;
+
+        > div.relationship_user_left {
+          margin-right: 2%;
+          height: 50px;
+          width: 50px;
+
+          > a > img {
+            border: 1px solid rgba(128,128,128,.4);
+            border-radius: 50%;
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+          }
+        }
+        > div.relationship_user_right {
+          width: 100%;
+          > div.relationship_user_right_header {
+            display: flex;
+            > div.relationship_user_name {
+              font-size: 1.1em;
+              font-weight: bold;
+              margin-right: auto;
+            }
+            > div.relationship_make_btn {
+              display: flex;
+            > div.relationship_follow_btn {
+              margin-right: 10px;
+            }
+            }
+
+          }
+        }
+      }
+    }
+    > div.relationship_nothing {
+      font-size: 1.3em;
+      font-weight: bold;
+      text-align: center;
+      height: 500px;
+      padding: 100px 20px;
     }
   }
 }

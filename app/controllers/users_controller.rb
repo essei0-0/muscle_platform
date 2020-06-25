@@ -17,8 +17,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    log_in @user
-
     if @user.save
       log_in @user
       flash[:success] = "ようこそ、Muscle Platformへ！"
@@ -46,21 +44,21 @@ class UsersController < ApplicationController
     @title = "フォロー"
     @user  = User.find(params[:id])
     @users = @user.following
-    render 'show_follow'
+    render 'users/relationship'
   end
 
   def followers
     @title = "フォロワー"
     @user  = User.find(params[:id])
     @users = @user.followers
-    render 'show_follow'
+    render 'users/relationship'
   end
 
   def students
     @title = "弟子"
     @user  = User.find(params[:id])
     @users = @user.students
-    render 'show_students'
+    render 'users/relationship'
    end
 
 private

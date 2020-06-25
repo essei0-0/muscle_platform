@@ -1,4 +1,28 @@
-<li>
-  <%= gravatar_for user, size: 50 %>
-  <%= link_to user.name, user %>
+<li class="relationship_user">
+  <div class="relationship_user_left">
+    <a href="<%= user_path(user) %>">
+      <%= image_tag user.image_name.url %>
+    </a>
+  </div>
+  <div class="relationship_user_right">
+    <div class="relationship_user_right_header">
+      <div class="relationship_user_name">
+        <a href="<%= user_path(user) %>">
+          <span><%= user.name %></span>
+        </a>
+      </div>
+      <div class="relationship_make_btn">
+        <div class="relationship_follow_btn">
+          <%= render 'follow_form' if logged_in? %>
+        </div>
+        <div class="relationship_teacher_btn">
+          <%= render 'teacher_form' if logged_in? %>
+        </div>
+      </div>
+    </div>
+    <div class="relationship_user_right_content">
+      <span><%= user.bio %></span>
+    </div>
+
+  </div>
 </li>

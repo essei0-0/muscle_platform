@@ -1,17 +1,15 @@
-<div class="mask">
-  <div class="muscle_post_frame">
-    <button type="button" id="muscle_post_close" class="close">&times;</button>
-    <%= form_with model: @new_micropost, local: true do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div class="muscle_post_field">
-        <%= f.text_area :content, placeholder: "マッスルネタを共有しよう！" %>
-      </div>
-      <div class="">
-        <span class="picture">
-          <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-        </span>
-        <%= f.submit "投稿する", class: "btn btn-primary muscle_post_btn", disabled: true %>
-      </div>
-    <% end %>
-  </div>
+<div class="muscle_post_frame">
+  <button type="button" id="muscle_post_close" class="close">&times;</button>
+  <%= form_with model: @new_micropost, local: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="muscle_post_field">
+      <%= f.text_area :content, placeholder: "マッスルネタを共有しよう！" %>
+    </div>
+    <div class="">
+      <span class="picture">
+        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+      </span>
+      <%= f.submit "投稿する", class: "btn btn-primary muscle_post_btn", disabled: true %>
+    </div>
+  <% end %>
 </div>

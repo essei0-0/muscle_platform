@@ -8,16 +8,13 @@ $(document).on('turbolinks:load', function() {
       $('.post_btn').prop('disabled', false);
     });
 
-    $('.mask').hide();
+    $('#mask , .muscle_post_frame').hide();
 
     $('#muscle_post').click(function(){
-      $('.mask').show();
+      $('#mask, .muscle_post_frame').show();
     });
 
-    $('#muscle_post_close').click( function () {
-			$('.mask').hide();
+    $('#mask, #muscle_post_close').click( function () {
+			$('#mask, .muscle_post_frame').hide();
 		});
-    $('.mask').click( function () {
-			$(this).hide();
-    });
 });

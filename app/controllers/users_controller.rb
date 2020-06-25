@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in @user
-      flash[:success] = "Muscle Platformへ"
+      flash[:success] = "ようこそ、Muscle Platformへ！"
       redirect_to root_url
     else
       render 'new'
@@ -56,18 +56,11 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-  # def teacher
-  #    @title = "師匠"
-  #    @user  = User.find(params[:id])
-  #    @teacher = @user.teacher
-  #    redirect_to @teacher
-  #  end
-
-   def students
-     @title = "弟子"
-     @user  = User.find(params[:id])
-     @users = @user.students
-     render 'show_students'
+  def students
+    @title = "弟子"
+    @user  = User.find(params[:id])
+    @users = @user.students
+    render 'show_students'
    end
 
 private

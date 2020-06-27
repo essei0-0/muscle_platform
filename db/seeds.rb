@@ -25,10 +25,8 @@ end
 users = User.order(:created_at).take(50)
 10.times do
   content =
-  "ベンチプレス3セット
-  ダンベルカール3セット
-  レッグレイズ5セット"
-  users.each { |user| user.microposts.create!(content: content, picture: File.open("./public/images/musclebody.jpg")) }
+  "筋トレ楽しい！"
+  users.each { |user| user.microposts.create!(content: content) }
 end
 
 #リレーションシップ
@@ -40,5 +38,5 @@ users.each do |user|
     user.follow(followed) unless user == followed
    }
 
-   user.teacher = User.where( 'id >= ?', rand(User.first.id..User.last.id) ).first
+   
 end

@@ -17,5 +17,9 @@ module MusclePlatform
     # the framework and any gems in your application.
     # 認証トークンをremoteフォームに埋め込む
     config.action_view.embed_authenticity_token_in_remote_forms = true
+    config.i18n.default_locale = :ja
+    # タイムゾーンを日本時間に設定
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
   end
 end

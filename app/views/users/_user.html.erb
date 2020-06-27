@@ -11,14 +11,16 @@
           <span><%= user.name %></span>
         </a>
       </div>
+      <% unless current_user?(user) %>
       <div class="relationship_make_btn">
         <div class="relationship_follow_btn">
-          <%= render 'follow_form' if logged_in? %>
+          <%= render 'follow_form', { user: user} %>
         </div>
         <div class="relationship_teacher_btn">
-          <%= render 'teacher_form' if logged_in? %>
+          <%= render 'teacher_form', { user: user} %>
         </div>
       </div>
+      <% end %>
     </div>
     <div class="relationship_user_right_content">
       <span><%= user.bio %></span>

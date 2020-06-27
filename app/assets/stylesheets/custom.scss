@@ -13,6 +13,7 @@ $app-main-color: #f25a27;
 body {
   font-family: sans-serif;
   background: #fafafa;
+  user-select: none;
 }
 
 textarea {
@@ -35,6 +36,10 @@ a {
     opacity: .6;
     text-decoration: none;
   }
+  // クリックしてページ遷移しなかった時に出る下線を消す
+  &:link {
+    text-decoration: none;
+  }
 }
 
 
@@ -42,8 +47,9 @@ a {
   background-image: url("/images/home_bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 845px;
-  padding-top: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
   margin-bottom: 0;
 
   .home_message {
@@ -71,7 +77,36 @@ a {
 /* application */
 
 .main_contents {
-  padding-top: 120px;
+  padding-top: 100px;
+}
+div.alert-success {
+  background: $app-main-color;
+  border: transparent;
+  color: #000;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+div#flash {
+  border-radius: 0px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  line-height: 32px;
+  margin-bottom: 0;
+  z-index: 100;
+  > div {
+
+  }
+}
+
+div#flash_filter {
+  background: rgba(255, 255, 255, .1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  z-index: 200;
 }
 
 /* header */
@@ -83,6 +118,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 10;
   }
 }
 
@@ -138,7 +174,7 @@ ul.dropdown-menu {
     > ul  {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 100%;
       > li.new_post_bg {
         display: flex;
@@ -200,52 +236,99 @@ ul.dropdown-menu {
 }
 
 /* home */
+.micropost {
+  width: 53%;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid rgba(128,128,128,.1);
+  .micropost_sticky {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 60px;
+    height: 50px;
 
-.microposts_feed {
-    width: 614px;
-    margin: 0 auto;
-  > li {
-    margin-bottom: 60px;
-    > article {
-      border: 1px solid rgba(0,0,0,.2);
-      > a {
+    .micropost_back_btn  {
+        margin-left: 5%;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         &:hover {
-          color: inherit;
+          background: rgba(242,90,39,.1);
+          border-radius: 50%;
+          transition: background-color 1s;
         }
-        >header {
-          display: flex;
-          padding: 20px;
 
 
-          >div.feed_profile_img {
-            margin-right: 20px;
-            height: 50px;
-            width: 50px;
+        a {
+          color: $app-main-color;
+          font-size: 1.5em;
+          height: 60%;
+          width: 60%;
+        }
+    }
+  }
+}
 
-            > img {
-              border: 1px solid rgba(128,128,128,.4);
-              border-radius: 50%;
-              object-fit: contain;
-              width: 100%;
-              height: 100%;
-            }
-          }
-          > div.feed_relationship {
-            margin-left: auto;
-          }
-        }
-        div.feed_main_img {
-          margin-bottom: 20px;
-        }
-        div.feed_content {
-          padding: 20px;
-        }
-        div.timestamp {
-          font-size: 0.7em;
-          opacity: .7;
-          padding: 20px;
+.micropost_detail {
+    width: 53%;
+    margin: 0 auto;
+  li {
+    margin-bottom: 60px;
+  }
+  article {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.1);
+    border-top: transparent;
+    > a {
+      &:hover {
+        color: inherit;
+      }
+    }
+    header {
+      display: flex;
+      padding: 20px;
+
+      >div.micropost_profile_img {
+        margin-right: 20px;
+        height: 50px;
+        width: 50px;
+
+       img {
+          border: 1px solid rgba(128,128,128,.4);
+          border-radius: 50%;
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
         }
       }
+
+      > div.micropost_relationship {
+        margin-left: auto;
+      }
+    }
+
+    div.micropost_main_img {
+      margin-bottom: 20px;
+    }
+    div.micropost_content {
+      padding: 20px;
+    }
+    div.micropost_footer {
+      display: flex;
+    }
+    div.micropost_timestamp {
+      font-size: 0.7em;
+      opacity: .7;
+      padding: 20px;
+      margin-right: auto;
+    }
+    div.micropost_delete {
+      padding: 20px;
     }
   }
 }
@@ -435,11 +518,15 @@ div.profile_garaly {
 }
 
 /* error_messages */
-#error_explanation {
+div#error_explanation {
   color: red;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  padding-right: 0;
   ul {
     color: red;
-    margin: 0 0 30px 0;
   }
 }
 
@@ -508,6 +595,7 @@ div#mask {
   height: 100%;
   width: 100%;
   background: rgba(0,0,0,.4);
+  z-index: 20;
 }
 
 div.muscle_post_frame {
@@ -519,6 +607,7 @@ div.muscle_post_frame {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 30;
 
 
   div.muscle_post_field {
@@ -543,51 +632,6 @@ div.muscle_post_frame {
   }
 }
 
-/* micropost_show */
-.micropost_detail {
-    width: 614px;
-    margin: 0 auto;
-  > article {
-    border: 1px solid rgba(0,0,0,.2);
-    header {
-      display: flex;
-      padding: 20px;
-
-      >div.micropost_profile_img {
-        margin-right: 20px;
-        height: 50px;
-        width: 50px;
-
-        > img {
-          border: 1px solid rgba(128,128,128,.4);
-          border-radius: 50%;
-          object-fit: contain;
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-    div.micropost_main_img {
-      margin-bottom: 20px;
-    }
-    div.micropost_content {
-      padding: 0 20px;
-    }
-    div {
-      display: flex;
-      justify-content: space-between;
-      > div.timestamp {
-        font-size: 0.7em;
-        opacity: .7;
-        padding: 20px;
-      }
-      > div.micropost_delete {
-        padding: 20px;
-      }
-
-    }
-  }
-}
 
 /* relationship */
 div.relationship {

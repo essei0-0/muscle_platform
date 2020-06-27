@@ -3,30 +3,38 @@
     <a href="<%= micropost_path(micropost.id) %>">
       <% if @user.nil? %>
       <header>
-        <div class="feed_profile_img">
-          <%= image_tag micropost.user.image_name.url %>
+        <div class="micropost_profile_img">
+          <object>
+            <a href="<%= user_path(micropost.user) %>"><%= image_tag micropost.user.image_name.url %></a>
+          </object>
         </div>
-        <div class="">
-          <%= micropost.user.name %>
+        <div class="micropost_user_name">
+          <object>
+            <a href="<%= user_path(micropost.user) %>"><%= micropost.user.name %></a>
+          </object>
         </div>
         <% if current_user.teacher == micropost.user %>
-        <div class="feed_relationship">
+        <div class="micropost_relationship">
           <span>師匠</span>
         </div>
         <% elsif current_user.student?(micropost.user) %>
-        <div class="feed_relationship">
+        <div class="micropost_relationship">
           <span>弟子</span>
         </div>
         <% end %>
       </header>
-      <div class="feed_main_img">
+      <% if micropost.picture? %>
+      <div class="micropost_main_img">
         <%= image_tag micropost.picture.url %>
       </div>
-      <div class="feed_content">
+      <% end %>
+      <% if micropost.content? %>
+      <div class="micropost_content">
         <span><%= micropost.content %></span>
       </div>
-      <div class="timestamp">
-        <span><%= time_ago_in_words(micropost.created_at) %> ago.</span>
+      <% end %>
+      <div class="micropost_timestamp">
+        <span><%= time_ago_in_words(micropost.created_at) %></span>
       </div>
       <% else %>
       <div class="garaly_img">

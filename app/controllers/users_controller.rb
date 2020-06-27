@@ -6,20 +6,19 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts
+    @microposts = @user.microposts.where.not(picture: nil)
     @col = 'col-md-4'
   end
 
   def new
     @user = User.new
-
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "ようこそ、Muscle Platformへ！"
+      flash[:success] = "#{@user.name}さん、ようこそMuscle Platformへ！"
       redirect_to root_url
     else
       render 'new'

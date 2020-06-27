@@ -13,18 +13,19 @@
     <div class= <%= bg_style(@bg_url) %>>
       <%= render 'layouts/header' %>
       <div class="container main_contents">
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>"><%= message %></div>
-        <% end %>
         <%= yield %>
-        <div id="mask"></div>
-        <%= render 'microposts/new' if logged_in? %>
       </div>
-    </div>
-
-<!-- デバック情報 -->
-    <div class="container">
-      <%= debug(params) if Rails.env.development? %>
+      <div id="mask"></div>
+      <%= render 'microposts/new' if logged_in? %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %> " id="flash">
+          <div class="container">
+            <%= message %>
+          </div>
+        </div>
+        <div id="flash_filter">
+        </div>
+      <% end %>
     </div>
   </body>
 </html>

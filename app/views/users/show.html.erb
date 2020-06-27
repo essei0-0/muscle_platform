@@ -27,11 +27,13 @@
   <section class="user_profile_right col-md-9">
     <div class="row">
       <h1 class="col-md-4"><%= @user.name %></h1>
-      <%= render 'follow_form' if logged_in? %>
-      <%= render 'teacher_form' if logged_in? %>
+      <% unless current_user?(@user) %>
+        <%= render 'follow_form', { user: @user} %>
+        <%= render 'teacher_form', { user: @user}  %>
+      <% end %>
     </div>
     <div class="">
-      <span class="signup_day"><%= @user.created_at %>から、Muscle Platformを利用しています</span>
+      <span class="signup_day"><%= @user.created_at.strftime('%Y/%m/%d') %>から、Muscle Platformを利用しています</span>
     </div>
 
     <ul class="row list-inline">
@@ -43,7 +45,7 @@
 
     <% if @user.teacher %>
     <div class="teacher">
-      <a href="<%= user_path(@user.teacher) %>"><span><%= @user.teacher.name %>さんの弟子です</span></a>
+      <span><a href="<%= user_path(@user.teacher) %>"><%= @user.teacher.name %></a>さんの弟子です</span>
     </div>
     <% end %>
 
@@ -61,10 +63,8 @@
   </ul>
 
   <article class="row">
-    <% if @user.microposts.any? %>
       <ol class="microposts_garaly">
         <%= render @microposts %>
       </ol>
-    <% end %>
   </article>
 </div>

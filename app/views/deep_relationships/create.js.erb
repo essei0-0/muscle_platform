@@ -1,2 +1,2 @@
-$("#teacher_form").html("<%= escape_javascript(render('users/not_teacher')) %>");
+$("#teacher_form").html("<%= escape_javascript(render partial: 'users/not_teacher', locals: {user: @user}) %>");
 $("#students").html('<%= @user.students.count %>');

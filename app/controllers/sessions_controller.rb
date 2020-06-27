@@ -10,10 +10,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       remember user
+      flash[:success] = "#{user.name}さん、お帰りマッスル！"
       redirect_back_or root_url
     else
       # エラーメッセージを作成する
-      flash.now[:danger] = 'メールアドレスまたはパスワードが違います'
+      @error = ''
       render 'new'
     end
   end

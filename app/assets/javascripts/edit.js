@@ -15,7 +15,6 @@ $(document).on('turbolinks:load', function() {　
     }else{
       $('.edit_main').css("height", nav_h + "px");
     }
-    console.log("load");
 
   };
 
@@ -23,7 +22,6 @@ $(document).on('turbolinks:load', function() {　
 
   $('.edit_link').click(function(){
     resizeHeight();
-    console.log("click");
   });
 
 
@@ -31,18 +29,15 @@ $(document).on('turbolinks:load', function() {　
 
   $('#profile input').keyup(function(){
     $('.edit_profile_btn').prop('disabled', false);
-    console.log("change prof")
   });
 
   $('#password input').keyup(function(){
     $('.edit_password_btn').prop('disabled', false);
-    console.log("change pass")
   });
 
   $('input[type="submit"]').click(function(){
     var id = $(this).parents('div.active').attr('id');
     $('a[href="#password"]').addClass('active');
-    console.log('addclass!');
   });
 
   $('#user_image_name').bind('change', function() {

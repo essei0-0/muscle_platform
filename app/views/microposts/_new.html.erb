@@ -3,11 +3,11 @@
   <%= form_with model: @new_micropost, local: true do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="muscle_post_field">
-      <%= f.text_area :content, placeholder: "マッスルネタを共有しよう！" %>
+      <%= f.text_area :content, placeholder: "あなたのマッスルネタを共有しよう！", id: "muscle_post_content" %>
     </div>
     <div class="">
       <span class="picture">
-        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', id: "muscle_post_picture" %>
       </span>
       <%= f.submit "投稿する", class: "btn btn-primary muscle_post_btn", disabled: true %>
     </div>

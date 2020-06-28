@@ -63,6 +63,11 @@ class UsersController < ApplicationController
     render 'users/relationship'
    end
 
+   def health_records
+     @user = User.find(params[:id])
+     @health_records = @user.health_records
+   end
+
 private
 
   def user_params

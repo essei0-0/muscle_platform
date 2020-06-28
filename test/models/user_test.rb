@@ -89,4 +89,12 @@ class UserTest < ActiveSupport::TestCase
     michael.not_student(archer)
     assert_not michael.student?(archer)
   end
+
+  test "associated health_records should be destroyed" do
+    @user.save
+    @user.health_records.create!(weight: 65.8, measured_at: "Tue, 20 Oct 2015 19:22:43 +0900")
+    assert_difference 'HealthRecord.count', -1 do
+      @user.destroy
+    end
+  end
 end

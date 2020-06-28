@@ -1,0 +1,18 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.health_records.any? %>
+      <h3>体重管理 (<%= @user.health_records.count %>)</h3>
+      <ol class="">
+        <%= render @health_records %>
+      </ol>
+    <% end %>
+  </div>
+</div>

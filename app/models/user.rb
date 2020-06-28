@@ -17,6 +17,8 @@ class User < ApplicationRecord
                                 dependent:   :destroy
   has_one :teacher, through: :active_deep_relationships
   has_many :students, through: :passive_deep_relationships
+
+  has_many :health_records, dependent: :destroy
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   mount_uploader :image_name, ImagenameUploader

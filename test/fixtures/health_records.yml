@@ -1,0 +1,18 @@
+
+one:
+  height: 1.5
+  weight: 1.5
+  fat: 1.5
+  measured_at: <%= 10.minutes.ago %>
+
+two:
+  height: 1.5
+  weight: 1.5
+  fat: 1.5
+  measured_at: <%= 2.hours.ago %>
+
+most_recent:
+  height: 1.5
+  weight: 1.5
+  fat: 1.5
+  measured_at: <%= Time.zone.now %>

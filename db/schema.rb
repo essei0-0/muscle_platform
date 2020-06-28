@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_23_104656) do
+ActiveRecord::Schema.define(version: 2020_06_28_191921) do
 
   create_table "deep_relationships", force: :cascade do |t|
     t.integer "teacher_id"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 2020_06_23_104656) do
     t.index ["student_id"], name: "index_deep_relationships_on_student_id"
     t.index ["teacher_id", "student_id"], name: "index_deep_relationships_on_teacher_id_and_student_id", unique: true
     t.index ["teacher_id"], name: "index_deep_relationships_on_teacher_id"
+  end
+
+  create_table "health_records", force: :cascade do |t|
+    t.float "height"
+    t.float "weight", null: false
+    t.float "fat"
+    t.float "muscle"
+    t.float "bmr"
+    t.float "bmi"
+    t.datetime "measured_at", null: false
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "measured_at"], name: "index_health_records_on_user_id_and_measured_at", unique: true
+    t.index ["user_id"], name: "index_health_records_on_user_id"
   end
 
   create_table "microposts", force: :cascade do |t|

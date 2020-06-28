@@ -4,8 +4,7 @@ User.create!(name:  "アイレット太郎",
              password_confirmation: "password",
              bio: "筋肉は裏切らない！",
              url: "https://www.iret.co.jp/",
-             tel: "080-xx1-4649",
-             image_name: File.open("./public/images/muscler.jpg"))
+             tel: "080-xx1-4649")
 
 99.times do |n|
   name  = Faker::Name.name
@@ -21,11 +20,17 @@ User.create!(name:  "アイレット太郎",
 
 end
 
-users = User.order(:created_at).take(50)
+users = User.order(:created_at).take(5)
 10.times do
   content =
   "筋トレ楽しい！"
   users.each { |user| user.microposts.create!(content: content) }
+end
+
+users = User.order(:created_at).take(5)
+10.times do
+  weight = 65.5
+  users.each { |user| user.health_records.create!(weight: weight, measured_at: DateTime.now) }
 end
 
 #リレーションシップ

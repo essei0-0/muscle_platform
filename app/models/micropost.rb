@@ -10,7 +10,7 @@ class Micropost < ApplicationRecord
   private
 
   def content_or_picture
-      content.presence or picture.presene
+      content.presence or picture.presence
   end
 
   # アップロードされた画像のサイズをバリデーションする

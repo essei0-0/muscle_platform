@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :set_class, only:[:new, :create]
   before_action :logged_in_user, only: [:edit, :update,  :following, :followers, :teacher, :students]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])

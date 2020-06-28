@@ -45,7 +45,7 @@
 
     <% if @user.teacher %>
     <div class="teacher">
-      <span><a href="<%= user_path(@user.teacher) %>"><%= @user.teacher.name %></a>さんの弟子です</span>
+      <span id="teacher_text"><a href="<%= user_path(@user.teacher) %>"><%= @user.teacher.name %></a>さんの弟子です</span>
     </div>
     <% end %>
 

@@ -14,9 +14,9 @@
       </div>
     </div>
     <ul class="nav nav-tabs relationship_nav">
-      <li><a href="<%= following_user_path %>">フォロー</a></li>
-      <li><a href="<%= followers_user_path %>">フォロワー</a></li>
-      <li><a href="<%= students_user_path %>">弟子</a></li>
+      <li><a href="<%= following_user_path %>" class= <%= @follow_class %>>フォロー</a></li>
+      <li><a href="<%= followers_user_path %>" class= <%= @follower_class %>>フォロワー</a></li>
+      <li><a href="<%= students_user_path %>" class=<%= @students_class %>>弟子</a></li>
     </ul>
   </div>
 

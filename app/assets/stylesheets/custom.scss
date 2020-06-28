@@ -674,14 +674,37 @@ div.relationship {
     > ul.relationship_nav {
 
       > li {
+        color: #666;
+        font-weight: bold;
         text-align: center;
         width: 35%;
         &:last-child {
           width: 30%;
         }
+
+        > a {
+          margin-right: 0;
+          &:hover {
+            opacity: 1;
+          }
+          &:focus {
+            background: #fff;
+          }
+
+          &.hover {
+            background: rgba(242,90,39,.1);
+            border-bottom: 1px solid rgba(242,90,39,.1);
+            color: $app-main-color;
+          }
+          &.active {
+            border-bottom: 2px solid $app-main-color;
+            color: $app-main-color;
+          }
+        }
       }
     }
   }
+
   > div.relationship_users_frame {
     > ul.relationship_users {
       padding-left: 0;
@@ -714,11 +737,23 @@ div.relationship {
             }
             > div.relationship_make_btn {
               display: flex;
-            > div.relationship_follow_btn {
-              margin-right: 10px;
-            }
-            }
+              justify-content: space-between;
+              width: 25%;
 
+              > div.relationship_follow_btn {
+                display: inline-block;
+                width: 45%;
+              }
+              > div.relationship_teacher_btn {
+                width: 45%;
+              }
+              > div.relationship_not_student_btn {
+                width: 45%;
+              }
+              input[type="submit"] {
+                width: 100%;
+              }
+            }
           }
         }
       }

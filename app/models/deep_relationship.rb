@@ -6,6 +6,7 @@ class DeepRelationship < ApplicationRecord
   validates :teacher_id, uniqueness: { scope: :student_id }
   validate :check_relation
 
+  private
 
   def check_relation
     if DeepRelationship.find_by(teacher_id: student_id, student_id: teacher_id)

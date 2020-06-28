@@ -86,11 +86,6 @@ class User < ApplicationRecord
     students << other_user
   end
 
-  # ユーザーの師匠をやめる
-  def not_student(other_user)
-    passive_deep_relationships.find_by(student_id: other_user.id).destroy
-  end
-
   # 現在のユーザーが弟子であればtrueを返す
   def student?(other_user)
     students.include?(other_user)

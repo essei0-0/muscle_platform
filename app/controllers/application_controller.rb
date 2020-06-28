@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
-  before_action :prepare_micropost
+  before_action :prepare_micropost, except: [:create, :destroy]
 
   private
   # ユーザーのログインを確認する

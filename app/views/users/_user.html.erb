@@ -1,4 +1,4 @@
-<li class="relationship_user">
+<li class="relationship_user"　id=<%= "student_form_#{user.id}" %>>
   <div class="relationship_user_left">
     <a href="<%= user_path(user) %>">
       <%= image_tag user.image_name.url %>
@@ -16,9 +16,15 @@
         <div class="relationship_follow_btn">
           <%= render 'follow_form', { user: user} %>
         </div>
+        <% unless user.teacher == current_user %>
         <div class="relationship_teacher_btn">
           <%= render 'teacher_form', { user: user} %>
         </div>
+        <% else %>
+        <div class="relationship_not_student_btn">
+          <%= render 'student_form', { user: user} %>
+        </div>
+        <% end %>
       </div>
       <% end %>
     </div>

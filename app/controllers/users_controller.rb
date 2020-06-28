@@ -43,6 +43,7 @@ class UsersController < ApplicationController
     @title = "フォロー"
     @user  = User.find(params[:id])
     @users = @user.following
+    @follow_class = "active"
     render 'users/relationship'
   end
 
@@ -50,6 +51,7 @@ class UsersController < ApplicationController
     @title = "フォロワー"
     @user  = User.find(params[:id])
     @users = @user.followers
+    @follower_class = "active"
     render 'users/relationship'
   end
 
@@ -57,6 +59,7 @@ class UsersController < ApplicationController
     @title = "弟子"
     @user  = User.find(params[:id])
     @users = @user.students
+    @students_class = "active"
     render 'users/relationship'
    end
 

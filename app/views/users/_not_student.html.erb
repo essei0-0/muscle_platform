@@ -1,0 +1,4 @@
+<%= form_with(model: user.active_deep_relationships, html: { method: :delete }, local:true) do |f| %>
+  <%= f.submit "破門する", class: "btn btn-danger",
+  data: { confirm: "この弟子を破門します。よろしいですか？"} %>
+<% end %>

@@ -1,9 +1,9 @@
-User.create!(name:  "筋肉太郎",
-             email: "example-1@muscle.com",
+User.create!(name:  "アイレット太郎",
+             email: "power@muscle.com",
              password:              "password",
              password_confirmation: "password",
              bio: "筋肉は裏切らない！",
-             url: "https://www.google.com",
+             url: "https://www.iret.co.jp/",
              tel: "080-xx1-4649",
              image_name: File.open("./public/images/muscler.jpg"))
 
@@ -15,8 +15,7 @@ User.create!(name:  "筋肉太郎",
                email: email,
                password:              password,
                password_confirmation: password,
-               bio: "筋肉は裏切らない！
-               #{n}才です",
+               bio: "筋肉は裏切らない！",
                url: "https://www.google.com",
                tel: "080-xx#{n+2}-4649")
 
@@ -31,12 +30,17 @@ end
 
 #リレーションシップ
 users = User.all
-following = users[0..70]
 
 users.each do |user|
+  following = User.find(User.pluck(:id)).sample(50)
   following.each { |followed|
-    user.follow(followed) unless user == followed
+    unless user == followed
+      user.follow(followed)
+    end
    }
 
-   
+   teacher = User.find(User.pluck(:id).sample)
+   unless (user.teacher && user.student == teacher)
+     user.teacher = teacher
+   end
 end

@@ -1,4 +1,4 @@
-<%= form_with(model:current_user.build_active_deep_relationships) do |f| %>
+<%= form_with(model:user.passive_deep_relationships.build) do |f| %>
   <div><%= hidden_field_tag :teacher_id, user.id %></div>
-  <%= f.submit "弟子入りする", class: "btn" %>
+  <%= f.submit "弟子入り", class: "btn" %>
 <% end %>

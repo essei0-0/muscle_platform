@@ -5,17 +5,22 @@ class DeepRelationshipsController < ApplicationController
     @user = User.find(params[:teacher_id])
     current_user.teacher = @user
       respond_to do |format|
-      format.html { redirect_to @user }
-      format.js
+        format.html { redirect_to @user }
+        format.js
     end
   end
 
   def destroy
     @user = DeepRelationship.find(params[:id]).teacher
-    current_user.not_teacher(@user)
-    respond_to do |format|
-      format.html { redirect_to @user }
-      format.js
+    if @user == current_user
+      DeepRelationship.find(params[:id]).destroy
+      redirect_to students_user_url current_user
+    else
+      current_user.not_teacher(@user)
+      respond_to do |format|
+        format.html { redirect_to @user }
+        format.js
+      end
     end
   end
 end

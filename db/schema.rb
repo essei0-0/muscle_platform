@@ -23,13 +23,13 @@ ActiveRecord::Schema.define(version: 2020_06_28_191921) do
   end
 
   create_table "health_records", force: :cascade do |t|
+    t.datetime "measured_at", null: false
     t.float "height"
     t.float "weight", null: false
     t.float "fat"
     t.float "muscle"
-    t.float "bmr"
+    t.integer "bmr"
     t.float "bmi"
-    t.datetime "measured_at", null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,0 +1,36 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      micropost: 投稿
+      health_record: 体重管理
+    attributes:
+      user:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認)
+        tel: 電話番号
+        image_name: プロフィール写真
+
+      micropost:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        content: 文章
+        picture: 画像
+
+      health_record:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        measured_at: 測定日時
+        height: 身長
+        weight: 体重
+        fat: 体脂肪率
+        muscle: 筋肉率
+        bmr: 基礎代謝
+        bmi: BMI

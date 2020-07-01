@@ -517,25 +517,7 @@ div.profile_garaly {
   color: rgba(0,0,0, .8);
 }
 
-/* error_messages */
-div#error_explanation {
-  color: red;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  width: 100%;
-  padding-right: 0;
-  ul {
-    color: red;
-  }
-}
 
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
 
 /* edit */
 
@@ -764,6 +746,126 @@ div.relationship {
       text-align: center;
       height: 500px;
       padding: 100px 20px;
+    }
+  }
+}
+
+/* health_record */
+div.health_records_form {
+  background: #fff;
+  border: 1px solid #666;
+  border-radius: 15px;
+  padding: 30px;
+  h1 {
+    text-align: center;
+    font-size: 1.6em;
+    margin-bottom: 60px;
+  }
+
+  div.form-group {
+    span {
+      font-size: 0.6em;
+    }
+
+    div.has-error:not(:last-child) {
+      width: 100%;
+
+      > input {
+        width: 35%;
+      }
+      > span {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+      }
+    }
+    input {
+      display: inline-block;
+      width: 35%;
+    }
+    input.datetime {
+      width: 100%;
+    }
+    div.health_record_input {
+      display: flex;
+      position: relative;
+
+      span.health_records_unit {
+        font-weight: bold;
+        position: absolute;
+        top: 45%;
+        left: 40%;
+      }
+    }
+  }
+  input[type="submit"] {
+    width: 100%;
+  }
+}
+
+div.health_records_table {
+  padding-right: 0;
+  height: 600px;
+  overflow: scroll;
+  table{
+    border-collapse: separate;
+    border-spacing: 0;
+
+    width: 100%;
+
+    tr {
+
+      &:first-child {
+        border-bottom: 1px solid #000;
+      }
+
+      &:nth-child(odd){
+        background-color: #eee
+      }
+
+      &:last-child td:first-child {
+        border-radius: 0 0 0 5px;
+      }
+
+      &:last-child td:last-child {
+        border-radius: 0 0 5px 0;
+      }
+
+      > th {
+        color: #fff;
+        text-align: center;
+        text-shadow: 1px 1px #000;
+        background: $app-main-color;
+        border-left: 1px solid #666;
+        border-top: 1px solid #666;
+        border-bottom: 1px solid #666;
+        box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
+        padding: 10px 0;
+        position: sticky;
+        top: 0px;
+
+        &:first-child{
+          border-radius: 5px 0 0 0;
+        }
+
+        &:last-child{
+          border-radius: 0 5px 0 0;
+          border-right: 1px solid #666;
+        }
+      }
+
+      > td{
+        text-align: center;
+        border-left: 1px solid #666;
+        border-bottom: 1px solid #666;
+        border-top:none;
+        box-shadow: 0px -3px 5px 1px #eee inset;
+        padding: 10px 0;
+
+        &:last-child{
+          border-right: 1px solid #666;
+        }
+      }
     }
   }
 }

@@ -64,8 +64,10 @@ class UsersController < ApplicationController
    end
 
    def health_records
-     @user = User.find(params[:id])
-     @health_records = @user.health_records
+     h = current_user.health_records
+     @health_records = h.take(current_user.health_records.count)
+     @health_record = h.build(height: h.first.height, weight: h.first.weight, fat: h.first.fat, measured_at: DateTime.now)
+     
    end
 
 private

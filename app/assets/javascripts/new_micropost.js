@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-  
+
   $('#mask , .muscle_post_frame').hide();
 
   $('#muscle_post').click(function(){

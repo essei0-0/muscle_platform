@@ -1,13 +1,13 @@
 class CreateHealthRecords < ActiveRecord::Migration[5.2]
   def change
     create_table :health_records do |t|
+      t.datetime :measured_at, null: false
       t.float :height
       t.float :weight, null: false
       t.float :fat
       t.float :muscle
-      t.float :bmr
+      t.integer :bmr
       t.float :bmi
-      t.datetime :measured_at, null: false
       t.references :user, foreign_key: true
 
       t.timestamps

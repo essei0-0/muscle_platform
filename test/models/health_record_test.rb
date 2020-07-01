@@ -3,7 +3,7 @@ require 'test_helper'
 class HealthRecordTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
-    @health_record = @user.health_records.build(weight: 65)
+    @health_record = @user.health_records.build(weight: 65, measured_at: DateTime.now)
   end
 
   test "should be valid" do

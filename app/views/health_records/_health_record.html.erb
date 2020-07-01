@@ -1,9 +1,9 @@
-<% if false %>
-<li id="health_record-<%= health_record.id %>">
-  <span class="weight"><%= health_record.weight %></span>
-  <span class="timestamp">
-    測定日 <%= time_ago_in_words(health_record.measured_at) %> .
-  </span>
-</li>
-
-<% end %>
+<tr>
+<td><%= l health_record.measured_at, format: :long %></td>
+<td><%= health_record.height %>cm</td>
+<td><%= health_record.weight %>kg</td>
+<td><%= health_record.fat %>%</td>
+<td><%= health_record.muscle %>%</td>
+<td><%= health_record.bmr %>kcal</td>
+<td><%= health_record.bmi %></td>
+</tr>

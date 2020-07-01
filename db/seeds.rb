@@ -28,9 +28,12 @@ users = User.order(:created_at).take(5)
 end
 
 users = User.order(:created_at).take(5)
-10.times do
-  weight = 65.5
-  users.each { |user| user.health_records.create!(weight: weight, measured_at: DateTime.now) }
+31.times do |n|
+  height = 170.6 + n
+  weight = 65.5 + n
+  fat = 15 + n
+  day = DateTime.now - n.day
+  users.each { |user| user.health_records.create!(height: height, weight: weight, fat: fat , measured_at: day) }
 end
 
 #リレーションシップ

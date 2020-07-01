@@ -12,7 +12,8 @@ class MicropostsController < ApplicationController
       flash[:success] = "投稿しました！"
       redirect_to root_url
     else
-      render 'microposts/new'
+      flash[:success] = "投稿に失敗しました！"
+      redirect_to request.referer
     end
   end
 

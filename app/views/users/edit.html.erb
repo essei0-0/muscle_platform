@@ -39,7 +39,17 @@
           <div class="form-group">
             <%= f.label :birthday %>
             <%= f.date_select :birthday, class: "form-control", use_month_numbers: true,
-            start_year: Date.today.prev_year(100).year, date_separator: '/' %>
+            start_year:Date.today.prev_year(100).year,
+            end_year:Date.today.year, date_separator: '/' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.radio_button :gender, 1, checked: @male %>
+            <%= f.label :gender, "男性", {value: :male, style: "display: inline-block;"} %>
+            <%= f.radio_button :gender, 2 , checked: @female %>
+            <%= f.label :gender, "女性", {value: :female, style: "display: inline-block;"} %>
+            <%= f.radio_button :gender, 0, checked: @default %>
+            <%= f.label :gender, "設定しない", {value: :default, style: "display: inline-block;"} %>
           </div>
 
           <div class="form-group">

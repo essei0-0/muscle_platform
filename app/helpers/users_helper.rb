@@ -31,6 +31,8 @@ module UsersHelper
         end
 
         to_attr - from_attr
+      else
+        " ー "
       end
     else
       " ー "

@@ -26,6 +26,15 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @male = @female = @default = false
+    if @user.gender == 1
+      @male = true
+    elsif @user.gender == 2
+      @female = true
+    else
+      @default = true
+    end
+
 
   end
 
@@ -73,7 +82,7 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :url, :bio, :tel, :image_name, :birthday)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :url, :bio, :tel, :image_name, :birthday, :gender)
   end
 
   def correct_user

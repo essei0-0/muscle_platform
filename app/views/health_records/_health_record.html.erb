@@ -1,9 +1,9 @@
 <tr>
 <td><%= l health_record.measured_at, format: :long %></td>
-<td><%= health_record.height %>cm</td>
-<td><%= health_record.weight %>kg</td>
-<td><%= health_record.fat %>%</td>
-<td><%= health_record.muscle %>%</td>
-<td><%= health_record.bmr %>kcal</td>
-<td><%= health_record.bmi %></td>
+<td><%= "#{health_record.height}cm" if health_record.height %></td>
+<td><%= health_record.weight %></td>
+<td><%= "#{health_record.fat}%" if health_record.fat %></td>
+<td><%= "#{health_record.muscle}%" if health_record.muscle %></td>
+<td><%= "#{health_record.bmr}kcal" if health_record.bmr %></td>
+<td><%= health_record.bmi if health_record.bmi %></td>
 </tr>

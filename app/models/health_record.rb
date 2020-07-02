@@ -19,7 +19,15 @@ class HealthRecord < ApplicationRecord
   #男性と女性で違う方程式になる
   def calc_bmr
     if age = user.convert_birthday_into_age
-      self.bmr = (13.397 * weight + 4.799 * height - 5.677 * age + 88.362).round
+      if user.gender == 1
+        self.bmr = (13.397 * weight + 4.799 * height - 5.677 * age + 88.362).round
+
+      elsif user.gender == 2
+        self.bmr = (9.247 * weight + 3.098 * height - 4.33 * age + 447.593).round
+
+      end
+
+
     end
   end
 

@@ -12,32 +12,38 @@
 
           <h1>プロフィールを編集</h1>
           <div class="form-group">
-            <%= f.label :name, "ユーザー名" %>
+            <%= f.label :name %>
             <%= f.text_field :name, class: "form-control" %>
           </div>
 
           <div class="form-group">
-            <%= f.label :url, "ウェブサイト" %>
+            <%= f.label :url %>
             <%= f.url_field :url, class: "form-control" %>
           </div>
 
           <div class="form-group">
-            <%= f.label :bio, "自己紹介" %>
+            <%= f.label :bio %>
             <%= f.text_area :bio, class: "form-control" %>
           </div>
 
           <div class="form-group">
-            <%= f.label :tel, "電話番号" %>
+            <%= f.label :tel %>
             <%= f.telephone_field :tel, class: "form-control" %>
           </div>
 
           <div class="form-group">
-            <%= f.label :email, "メールアドレス" %>
+            <%= f.label :email %>
             <%= f.email_field :email, class: "form-control" %>
           </div>
 
           <div class="form-group">
-            <%= f.label :image, 'プロフィール画像' %>
+            <%= f.label :birthday %>
+            <%= f.date_select :birthday, class: "form-control", use_month_numbers: true,
+            start_year: Date.today.prev_year(100).year, date_separator: '/' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :image_name %>
             <%= f.file_field :image_name, accept: 'image/jpeg,image/gif,image/png' %>
           </div>
 

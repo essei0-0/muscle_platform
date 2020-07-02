@@ -9,15 +9,19 @@
       <span>称号 <span>バルクモンスター</span></span>
       <div>
         <div>
-          <span>身長: <span>165</span>cm</span>
+          <span>身長: <span><%= @user.health_records.first&.height || " ー " %></span>cm</span>
         </div>
         <div>
-          <span>体重 <span>65</span>kg</span>
-          <span>前月比 <span>-1.4</span>kg</span>
+          <span>体重 <span><%= @user.health_records.first&.weight || " ー " %></span>kg</span>
+          <span>前月比 <span><%= calc_growth(@user, "weight") %></span>kg</span>
         </div>
         <div>
-          <span>体脂肪率 <span>20</span>%</span>
-          <span>前月比 <span>-2.5</span>%</span>
+          <span>体脂肪率 <span><%= @user.health_records.first&.fat || " ー " %></span>%</span>
+          <span>前月比 <span><%= calc_growth(@user, "fat") %></span>%</span>
+        </div>
+        <div>
+          <span>筋肉率 <span><%= @user.health_records.first&.muscle || " ー " %></span>%</span>
+          <span>前月比 <span><%= calc_growth(@user, "muscle") %></span>%</span>
         </div>
 
       </div>
@@ -26,7 +30,10 @@
 
   <section class="user_profile_right col-md-9">
     <div class="row">
-      <h1 class="col-md-4"><%= @user.name %></h1>
+      <div class="col-md-4 user_profile_name">
+        <h1><%= @user.name %></h1>
+        <span><%= @user.convert_birthday_into_age %></span>
+      </div>
       <% unless current_user?(@user) %>
         <%= render 'follow_form', { user: @user} %>
         <%= render 'teacher_form', { user: @user}  %>

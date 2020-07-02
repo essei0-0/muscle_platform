@@ -1,4 +1,4 @@
-<div id= <%= "follow_form_#{user.id}" %> >
+<div class="col-md-offset-1" id= <%= "follow_form_#{user.id}" %> >
 <% if current_user.following?(user) %>
   <%= render 'unfollow', user: user %>
 <% else %>

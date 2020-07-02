@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2020_06_28_191921) do
     t.text "bio"
     t.string "url"
     t.string "tel"
+    t.date "birthday"
+    t.integer "gender"
     t.string "image_name"
     t.index ["email"], name: "index_users_on_email", unique: true
   end

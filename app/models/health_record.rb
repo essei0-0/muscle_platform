@@ -18,7 +18,9 @@ class HealthRecord < ApplicationRecord
   #ハリスベネディクト方程式で基礎代謝を求める
   #男性と女性で違う方程式になる
   def calc_bmr
-    self.bmr = (13.397 * weight + 4.799 * height - 5.677 * 24 + 88.362).round
+    if age = user.convert_birthday_into_age
+      self.bmr = (13.397 * weight + 4.799 * height - 5.677 * age + 88.362).round
+    end
   end
 
   #BMI ＝ (体重kg) ÷ (身長m) ×　(身長m)

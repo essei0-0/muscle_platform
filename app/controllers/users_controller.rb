@@ -66,14 +66,14 @@ class UsersController < ApplicationController
    def health_records
      h = current_user.health_records
      @health_records = h.take(current_user.health_records.count)
-     @health_record = h.build(height: h.first.height, weight: h.first.weight, fat: h.first.fat, measured_at: DateTime.now)
-     
+     @health_record = h.build(height: h.first&.height, weight: h.first&.weight, fat: h.first&.fat, measured_at: DateTime.now)
+
    end
 
 private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :url, :bio, :tel, :image_name)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :url, :bio, :tel, :image_name, :birthday)
   end
 
   def correct_user

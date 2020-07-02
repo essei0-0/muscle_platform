@@ -13,8 +13,11 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認)
+        url: ウェブサイト
+        bio: 自己紹介
         tel: 電話番号
         image_name: プロフィール写真
+        birthday: 誕生日
 
       micropost:
         id: ID

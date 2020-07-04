@@ -1,4 +1,4 @@
-User.create!(name:  "アイレット太郎",
+User.create!(name:  "筋肉太郎",
              email: "power@muscle.com",
              password:              "password",
              password_confirmation: "password",

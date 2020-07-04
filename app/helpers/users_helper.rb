@@ -30,7 +30,7 @@ module UsersHelper
           to_attr = user.health_records.first.muscle
         end
 
-        to_attr - from_attr
+        (to_attr - from_attr).round(1)
       else
         " ー "
       end

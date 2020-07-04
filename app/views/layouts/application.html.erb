@@ -15,6 +15,8 @@
       <div class="container main_contents">
         <%= yield %>
       </div>
+      <%= render 'meal_records/edit' if logged_in? %>
+      <%= render 'health_records/edit' if logged_in? %>
       <div id="mask"></div>
       <%= render 'microposts/new' if logged_in? %>
       <% flash.each do |message_type, message| %>

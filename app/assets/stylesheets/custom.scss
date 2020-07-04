@@ -753,18 +753,20 @@ div.relationship {
   }
 }
 
-/* health_record */
-div.health_records_form {
+/* and_meal_record */
+div.record_form {
   background: #fff;
   border: 1px solid #666;
   border-radius: 15px;
   padding: 30px;
   h1 {
     text-align: center;
-    font-size: 1.6em;
-    margin-bottom: 60px;
+    font-size: 1.3em;
+    margin-top: 0;
+    margin-bottom: 30px;
   }
-
+}
+div.record_form, div.record_edit_form_left {
   div.form-group {
     span {
       font-size: 0.6em;
@@ -786,14 +788,17 @@ div.health_records_form {
       display: inline-block;
       width: 35%;
     }
+    input.food {
+      width: 100%;
+    }
     input.datetime {
       width: 100%;
     }
-    div.health_record_input {
+    div.record_input {
       display: flex;
       position: relative;
 
-      span.health_records_unit {
+      span.record_unit {
         font-weight: bold;
         position: absolute;
         top: 45%;
@@ -801,16 +806,23 @@ div.health_records_form {
       }
     }
   }
-  input[type="submit"] {
-    width: 100%;
+}
+
+
+div.record_button {
+  display: flex;
+  justify-content: space-between;
+  > input {
+    font-size: 0.8em;
+    width: 45%;
   }
 }
 
-div.health_records_table {
+div.records_table {
   padding-right: 0;
   height: 600px;
   overflow: scroll;
-  table{
+  table {
     border-collapse: separate;
     border-spacing: 0;
 
@@ -820,6 +832,16 @@ div.health_records_table {
 
       &:first-child {
         border-bottom: 1px solid #000;
+      }
+
+      &:not(:first-child) {
+        &.select_record {
+          background: $app-main-color;
+        }
+        &:hover {
+          background: rgba(242,90,39,.6);
+          cursor: pointer;
+        }
       }
 
       &:nth-child(odd){
@@ -865,10 +887,61 @@ div.health_records_table {
         box-shadow: 0px -3px 5px 1px #eee inset;
         padding: 10px 0;
 
-        &:last-child{
+        &:last-child {
           border-right: 1px solid #666;
         }
       }
     }
   }
+}
+
+div.meal_records_table tr > td:nth-last-child(2) {
+  border-right: 1px solid #666;
+}
+
+div.record_edit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #fafafa;
+  z-index: 15;
+  padding: 40px 135px;
+
+  div.record_edit_form_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 60px;
+
+    button.close {
+      float: none;
+      font-size: 3em;
+    }
+    input[type="submit"] {
+      width: 20%;
+    }
+  }
+
+  div.record_edit_form_left {
+    padding: 0;
+  }
+
+  div.form-group {
+    margin-bottom: 30px;
+  }
+
+    textarea {
+      height: 300px;
+    }
+
+    input[type="file"] {
+      width: auto;
+    }
+
+  div.record_edit_form_right {
+    padding: 0;
+  }
+
 }

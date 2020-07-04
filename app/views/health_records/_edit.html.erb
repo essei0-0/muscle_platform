@@ -1,0 +1,57 @@
+<div class="row record_edit health_record_edit">
+  <%= form_with model: @health_record, local: true do |f| %>
+  <div class="record_edit_form_header">
+    <button type="button" id="health_record_edit_close" class="close">&times;</button>
+    <%= f.submit "記録する", class: "btn btn-primary" %>
+  </div>
+
+  <div class="col-md-4 record_edit_form_left">
+    <div class="form-group">
+      <%= f.label :height %>
+      <span>※小数点第1位まで入力できます</span>
+      <div class="record_input">
+        <%= f.number_field :height, class: "form-control", step: "0.1", min: "0" %>
+        <span class="record_unit">cm</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :weight %>
+      <span>※小数点第1位まで入力できます</span>
+      <div class="record_input">
+        <%= f.number_field :weight, class: "form-control", step: "0.1", min: "0" %>
+        <span class="record_unit">kg</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :fat %>
+      <span>※小数点第1位まで入力できます</span>
+      <div class="record_input">
+        <%= f.number_field :fat, class: "form-control", step: "0.1", min: "0" %>
+        <span class="record_unit">%</span>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <%= f.label :measured_at %>
+      <%= f.datetime_local_field :measured_at, class: "form-control datetime", max: DateTime.now %>
+    </div>
+
+  </div>
+  <div class="col-md-offset-1 col-md-7 record_edit_form_right">
+    <div class="form-group note">
+      <%= f.label :note %>
+      <%= f.text_area :note, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :picture %>
+      <%= f.file_field :picture %>
+    </div>
+
+  </div>
+  <% end %>
+
+</div>

@@ -1,0 +1,65 @@
+<%= form_with model: @meal_record, local: true do |f| %>
+
+  <h1>食事を記録しよう</h1>
+  <div class="form-group">
+    <%= f.label :base_gram %>
+    <span>※整数で入力してください</span>
+    <div class="record_input">
+      <%= f.number_field :base_gram, class: "form-control", min: "1" %>
+      <span class="record_unit">(g, 個, 人前) あたり</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :protein %>
+    <span>※小数点第1位まで入力できます</span>
+    <div class="record_input">
+      <%= f.number_field :protein, class: "form-control", step: "0.1", min: "0" %>
+      <span class="record_unit">g</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :fat %>
+    <span>※小数点第1位まで入力できます</span>
+    <div class="record_input">
+      <%= f.number_field :fat, class: "form-control", step: "0.1", min: "0" %>
+      <span class="record_unit">g</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :carbo %>
+    <span>※小数点第1位まで入力できます</span>
+    <div class="record_input">
+      <%= f.number_field :carbo, class: "form-control", step: "0.1", min: "0" %>
+      <span class="record_unit">g</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :food %>
+    <div class="record_input">
+      <%= f.text_field :food, class: "form-control food" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :ate_gram %>
+    <span>※小数点第1位まで入力できます</span>
+    <div class="record_input">
+      <%= f.number_field :ate_gram, class: "form-control", step: "0.1", min: "0.1" %>
+      <span class="record_unit">(g, 個, 人前) 食べた</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :ate_at %>
+    <%= f.datetime_local_field :ate_at, class: "form-control datetime" %>
+  </div>
+
+  <div class="record_button">
+    <input type="button" value="その他のオプション" class="btn" id="meal_other_options">
+    <%= f.submit "記録する", class: "btn btn-primary" %>
+  </div>
+<% end %>

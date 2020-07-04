@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_191921) do
+ActiveRecord::Schema.define(version: 2020_07_02_155856) do
 
   create_table "deep_relationships", force: :cascade do |t|
     t.integer "teacher_id"
@@ -30,11 +30,31 @@ ActiveRecord::Schema.define(version: 2020_06_28_191921) do
     t.float "muscle"
     t.integer "bmr"
     t.float "bmi"
+    t.text "note"
+    t.string "picture"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "measured_at"], name: "index_health_records_on_user_id_and_measured_at", unique: true
     t.index ["user_id"], name: "index_health_records_on_user_id"
+  end
+
+  create_table "meal_records", force: :cascade do |t|
+    t.datetime "ate_at", null: false
+    t.string "food"
+    t.float "ate_gram"
+    t.float "protein"
+    t.float "fat"
+    t.float "carbo"
+    t.integer "calorie"
+    t.integer "base_gram"
+    t.text "note"
+    t.string "picture"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "ate_at"], name: "index_meal_records_on_user_id_and_ate_at"
+    t.index ["user_id"], name: "index_meal_records_on_user_id"
   end
 
   create_table "microposts", force: :cascade do |t|

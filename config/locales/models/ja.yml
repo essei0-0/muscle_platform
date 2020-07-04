@@ -37,3 +37,20 @@ ja:
         muscle: 筋肉率
         bmr: 基礎代謝
         bmi: BMI
+        note: メモ
+        picture: 写真
+
+      meal_record:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        ate_at: 摂取日時
+        protein: タンパク質
+        fat: 脂質
+        carbo: 炭水化物
+        food: 食品
+        base_gram: 基準
+        ate_gram: 摂取量
+        calorie: カロリー
+        note: メモ
+        picture: 写真

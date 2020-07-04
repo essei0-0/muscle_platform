@@ -4,27 +4,27 @@
   <div class="form-group">
     <%= f.label :height %>
     <span>※小数点第1位まで入力できます</span>
-    <div class="health_record_input">
+    <div class="record_input">
       <%= f.number_field :height, class: "form-control", step: "0.1", min: "0" %>
-      <span class="health_records_unit">cm</span>
+      <span class="record_unit">cm</span>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :weight %>
     <span>※小数点第1位まで入力できます</span>
-    <div class="health_record_input">
+    <div class="record_input">
       <%= f.number_field :weight, class: "form-control", step: "0.1", min: "0" %>
-      <span class="health_records_unit">kg</span>
+      <span class="record_unit">kg</span>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :fat %>
     <span>※小数点第1位まで入力できます</span>
-    <div class="health_record_input">
+    <div class="record_input">
       <%= f.number_field :fat, class: "form-control", step: "0.1", min: "0" %>
-      <span class="health_records_unit">%</span>
+      <span class="record_unit">%</span>
     </div>
 
   </div>
@@ -34,8 +34,10 @@
     <%= f.datetime_local_field :measured_at, class: "form-control datetime", max: DateTime.now %>
   </div>
 
+  <div class="record_button">
+    <input type="button" value="その他のオプション" class="btn" id="health_other_options">
+    <%= f.submit "記録する", class: "btn btn-primary" %>
+  </div>
 
-
-  <%= f.submit "記録する", class: "btn btn-primary" %>
 
 <% end %>

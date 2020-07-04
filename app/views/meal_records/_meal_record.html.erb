@@ -1,0 +1,10 @@
+<tr>
+<td><%= l meal_record.ate_at, format: :long %></td>
+<td><%= meal_record.food %></td>
+<td><%= "#{cut_zero(meal_record.ate_gram)}g" if meal_record.ate_gram %></td>
+<td><%= "#{cut_zero(meal_record.protein.round(1))}g" if meal_record.protein %></td>
+<td><%= "#{cut_zero(meal_record.fat.round(1))}g" if meal_record.fat %></td>
+<td><%= "#{cut_zero(meal_record.carbo.round(1))}g" if meal_record.carbo %></td>
+<td><%= "#{meal_record.calorie}kcal" if meal_record.calorie %></td>
+<input type="hidden" value=<%= meal_record.base_gram if meal_record.base_gram %>>
+</tr>

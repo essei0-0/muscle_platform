@@ -8,6 +8,8 @@ class CreateHealthRecords < ActiveRecord::Migration[5.2]
       t.float :muscle
       t.integer :bmr
       t.float :bmi
+      t.text :note
+      t.string :picture
       t.references :user, foreign_key: true
 
       t.timestamps

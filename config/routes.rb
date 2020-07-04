@@ -9,15 +9,16 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  get  '/health_records',  to: 'users#health_records'
-  
+  get  '/health_records',  to: 'health_records#new'
+  get '/meal_records', to: 'meal_records#new'
   resources :users, only: [:show, :edit, :update] do
     member do
-      get :following, :followers, :students
+      get :following, :followers, :students, :header_records, :meal_records
     end
   end
   resources :microposts, only: [:show, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :deep_relationships, only: [:create, :destroy]
   resources :health_records, only: [:create, :destroy]
+  resources :meal_records, only: [:edit, :create, :destroy]
 end

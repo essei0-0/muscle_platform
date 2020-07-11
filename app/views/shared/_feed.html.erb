@@ -2,4 +2,8 @@
   <ol class="micropost_detail">
     <%= render @feed_items %>
   </ol>
+<% else %>
+  <ol class="micropost_detail">
+    <%= render @trend_items %>
+  </ol>
 <% end %>

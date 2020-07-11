@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   def home
     if logged_in?
       @feed_items = current_user.feed
-
+      @trend_items = User.trend_feed
     else
       @bg_url = 'jumbotron'
       @col = 'col-md-offset-3 col-md-9'

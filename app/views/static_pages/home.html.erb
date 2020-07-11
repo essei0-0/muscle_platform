@@ -1,5 +1,16 @@
 <% if logged_in? %>
-<%= render 'shared/feed' %>
+  <% if @feed_items.count.zero? %>
+    <div class="login_home_message">
+      <h1>Muscle Platformへようこそ</h1>
+      <p>筋トレ仲間を見つけて、最高の筋トレライフを送ろう！</p>
+    </div>
+    <div class="trend_feed">
+      <h2>人気の投稿</h2>
+      <%= render 'shared/feed' %>
+    </div>
+  <% else %>
+    <%= render 'shared/feed' %>
+  <% end %>
 <% else %>
   <div class="row">
     <div class="home_message col-xs-7 px-0">

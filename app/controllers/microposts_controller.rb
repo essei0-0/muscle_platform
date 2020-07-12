@@ -4,6 +4,8 @@ class MicropostsController < ApplicationController
 
   def show
     @micropost = Micropost.find_by(id: params[:id])
+    @reply = Reply.new
+    @replies = @micropost.replies.where(reply_id: nil)
   end
 
   def create

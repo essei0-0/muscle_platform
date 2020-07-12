@@ -15,25 +15,58 @@
         <a href="<%= user_path(@micropost.user) %>"><%= @micropost.user.name %></a>
       </div>
     </header>
-    <% if @micropost.picture? %>
-    <div class="micropost_main_img">
-      <%= image_tag @micropost.picture.url %>
-    </div>
-    <% end %>
-    <div class="micropost_content">
-      <span><%= @micropost.content %></span>
-    </div>
-    <div class="micropost_footer">
+    <div class="micropost_main">
+      <% if @micropost.picture? %>
+      <div class="micropost_main_img">
+        <%= image_tag @micropost.picture.url %>
+      </div>
+      <% end %>
+      <div class="micropost_content">
+        <span><%= @micropost.content %></span>
+      </div>
+      <div class="micropost_reaction">
+        <div class="reply">
+          <img src="/images/reply.svg" width="24" height="24" alt="">
+        </div>
+        <div class="remuscle">
+          <img src="/images/remuscle.svg" width="24" height="24" alt="">
+        </div>
+        <div class="like">
+          <img src="/images/like.svg" width="24" height="24" alt="">
+          <div class="like_message">
+            <span>キレてるね!</span>
+          </div>
+        </div>
+        <% if current_user?(@micropost.user) %>
+        <div class="delete">
+          <%= link_to @micropost, method: :delete, data: { confirm: "削除しますか？" } do %>
+            <img src="/images/delete.svg" width="24" height="24" alt="">
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+
       <div class="micropost_timestamp">
         <span><%= @micropost.created_at.strftime("%Y-%m-%d %H:%M") %></span>
       </div>
-      <% if current_user?(@micropost.user) %>
-      <div class="micropost_delete">
-        <%= link_to "削除する", @micropost, method: :delete,
-                                         data: { confirm: "削除しますか？" } %>
-      </div>
-      <% end %>
     </div>
 
+    <div class="micropost_reply">
+      <%= form_with model: @reply, url: replies_path, local: true do |f| %>
+        <%= hidden_field_tag :micropost_id, @micropost.id %>
+        <div class="reply_field">
+          <%= f.text_area :content, id: "muscle_post_content", placeholder: "コメントする" %>
+          <%= f.submit "送信", class: "btn reply_btn" %>
+        </div>
+      <% end %>
+    </div>
   </article>
 </div>
+
+<% if @replies.any? %>
+<div class="micropost_replies">
+  <ol>
+    <%= render @replies %>
+  </ol>
+</div>
+<% end %>

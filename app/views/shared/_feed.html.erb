@@ -1,9 +1,9 @@
 <% if @feed_items.any? %>
-  <ol class="micropost_detail">
+  <ol class="micropost_feed">
     <%= render @feed_items %>
   </ol>
 <% else %>
-  <ol class="micropost_detail">
+  <ol class="micropost_feed">
     <%= render @trend_items %>
   </ol>
 <% end %>

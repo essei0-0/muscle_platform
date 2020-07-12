@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
     if logged_in?
       @feed_items = current_user.feed
       @trend_items = User.trend_feed
+      @reply = Reply.new
     else
       @bg_url = 'jumbotron'
       @col = 'col-md-offset-3 col-md-9'

@@ -1,15 +1,15 @@
 <% if logged_in? %>
-  <% if @feed_items.count.zero? %>
-    <div class="login_home_message">
-      <h1>Muscle Platformへようこそ</h1>
-      <p>筋トレ仲間を見つけて、最高の筋トレライフを送ろう！</p>
-    </div>
-    <div class="trend_feed">
-      <h2>人気の投稿</h2>
-      <%= render 'shared/feed' %>
-    </div>
-  <% else %>
+  <% if @feed_items.any? %>
     <%= render 'shared/feed' %>
+  <% else %>
+  <div class="login_home_message">
+    <h1>Muscle Platformへようこそ</h1>
+    <p>筋トレ仲間を見つけて、最高の筋トレライフを送ろう！</p>
+  </div>
+  <div class="trend_feed">
+    <h2>人気の投稿</h2>
+    <%= render 'shared/feed' %>
+  </div>    
   <% end %>
 <% else %>
   <div class="row">

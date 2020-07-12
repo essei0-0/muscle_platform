@@ -1,0 +1,69 @@
+<li class="" id="reply-<%= reply.id %>">
+  <article class="">
+    <a href="<%= reply_path(reply.id) %>">
+      <header>
+        <div class="reply_profile_img">
+          <object>
+            <a href="<%= user_path(reply.user) %>"><%= image_tag reply.user.image_name.url %></a>
+          </object>
+        </div>
+        <div class="reply_user_name">
+          <object>
+            <a href="<%= user_path(reply.user) %>"><%= reply.user.name %></a>
+          </object>
+        </div>
+        <div class="reply_timestamp">
+          <span><%= time_ago_in_words(reply.created_at) %>前</span>
+        </div>
+        <% if current_user.teacher == reply.user %>
+        <div class="reply_relationship">
+          <span>師匠</span>
+          <img src="/images/teacher.svg" width="24" height="24" alt="">
+        </div>
+        <% elsif current_user.student?(reply.user) %>
+        <div class="reply_relationship">
+          <span>弟子<img src="/images/student.svg" width="24" height="24" alt=""></span>
+        </div>
+        <% end %>
+      </header>
+      <div class="reply_main">
+        <div class="reply_content">
+          <span><%= reply.content %></span>
+        </div>
+        <div class="reply_reaction">
+          <div class="reply">
+            <img src="/images/reply.svg" width="20" height="20" alt="">
+          </div>
+          <div class="remuscle">
+            <img src="/images/remuscle.svg" width="20" height="20" alt="">
+          </div>
+          <div class="like">
+            <img src="/images/like.svg" width="20" height="20" alt="">
+            <div class="like_message">
+              <span>キレてるね!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    <div class="reply_reply">
+      <%= form_with model: reply.replies_to_reply, url: replies_path, local: true do |f| %>
+        <%= hidden_field_tag :reply_id, reply.id %>
+        <%= hidden_field_tag :micropost_id, @micropost.id %>
+        <div class="reply_field">
+          <%= f.text_area :content, id: "muscle_post_content", placeholder: "コメントする" %>
+          <%= f.submit "送信", class: "btn reply_btn" %>
+        </div>
+      <% end %>
+    </div>
+
+  </article>
+</li>
+
+<% if reply.replies_to_reply.any? %>
+<div class="micropost_replies_to_reply">
+  <ol>
+    <%= render partial: 'replies/reply_to_reply', collection: reply.replies_to_reply, as: 'reply' %>
+  </ol>
+</div>
+<% end %>

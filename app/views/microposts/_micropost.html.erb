@@ -16,25 +16,43 @@
         <% if current_user.teacher == micropost.user %>
         <div class="micropost_relationship">
           <span>師匠</span>
+          <img src="/images/teacher.svg" width="32" height="32" alt="">
         </div>
         <% elsif current_user.student?(micropost.user) %>
         <div class="micropost_relationship">
-          <span>弟子</span>
+          <span>弟子<img src="/images/student.svg" width="32" height="32" alt=""></span>
         </div>
         <% end %>
       </header>
-      <% if micropost.picture? %>
-      <div class="micropost_main_img">
-        <%= image_tag micropost.picture.url %>
-      </div>
-      <% end %>
-      <% if micropost.content? %>
-      <div class="micropost_content">
-        <span><%= micropost.content %></span>
-      </div>
-      <% end %>
-      <div class="micropost_timestamp">
-        <span><%= time_ago_in_words(micropost.created_at) %></span>
+      <div class="micropost_main">
+        <% if micropost.picture? %>
+        <div class="micropost_main_img">
+          <%= image_tag micropost.picture.url %>
+        </div>
+        <% end %>
+        <% if micropost.content? %>
+        <div class="micropost_content">
+          <span><%= micropost.content %></span>
+        </div>
+        <% end %>
+        <div class="micropost_reaction">
+          <div class="reply">
+            <img src="/images/reply.svg" width="24" height="24" alt="">
+            <span><%= micropost.replies.count if micropost.replies.any? %></span>
+          </div>
+          <div class="remuscle">
+            <img src="/images/remuscle.svg" width="24" height="24" alt="">
+          </div>
+          <div class="like">
+            <img src="/images/like.svg" width="24" height="24" alt="">
+            <div class="like_message">
+              <span>キレてるね!</span>
+            </div>
+          </div>
+        </div>
+        <div class="micropost_timestamp">
+          <span><%= time_ago_in_words(micropost.created_at) %>前</span>
+        </div>
       </div>
       <% else %>
       <div class="garaly_img">
@@ -42,5 +60,16 @@
       </div>
       <% end %>
     </a>
+    <% unless current_user?(micropost.user) %>
+    <div class="micropost_reply">
+      <%= form_with model: @reply, url: replies_path, local: true do |f| %>
+        <%= hidden_field_tag :micropost_id, micropost.id %>
+        <div class="reply_field">
+          <%= f.text_area :content, id: "muscle_post_content", placeholder: "コメントする" %>
+          <%= f.submit "送信", class: "btn reply_btn" %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
   </article>
 </li>

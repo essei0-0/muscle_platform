@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_155856) do
+ActiveRecord::Schema.define(version: 2020_07_11_125048) do
 
   create_table "deep_relationships", force: :cascade do |t|
     t.integer "teacher_id"
@@ -75,6 +75,19 @@ ActiveRecord::Schema.define(version: 2020_07_02_155856) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.text "content"
+    t.integer "reply_id"
+    t.integer "user_id"
+    t.integer "micropost_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["micropost_id", "created_at"], name: "index_replies_on_micropost_id_and_created_at"
+    t.index ["micropost_id"], name: "index_replies_on_micropost_id"
+    t.index ["user_id", "created_at"], name: "index_replies_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

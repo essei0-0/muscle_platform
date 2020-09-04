@@ -22,13 +22,13 @@ $(document).on('turbolinks:load', function() {
       }
   });
 
-  $("#muscle_post_content").on("keydown keyup keypress change", function() {
-  if ($(this).val().length == 0) {
-  $(".muscle_post_btn").prop("disabled", true);
-  } else {
-  $(".muscle_post_btn").prop("disabled", false);
-  }
-  });
+  // $("#muscle_post_content").on("keydown keyup keypress change", function() {
+  // if ($(this).val().length == 0) {
+  // $(".muscle_post_btn").prop("disabled", true);
+  // } else {
+  // $(".muscle_post_btn").prop("disabled", false);
+  // }
+  // });
 
 
 });

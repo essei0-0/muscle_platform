@@ -60,7 +60,6 @@
       </div>
       <% end %>
     </a>
-    <% unless current_user?(micropost.user) %>
     <div class="micropost_reply">
       <%= form_with model: @reply, url: replies_path, local: true do |f| %>
         <%= hidden_field_tag :micropost_id, micropost.id %>
@@ -70,6 +69,5 @@
         </div>
       <% end %>
     </div>
-    <% end %>
   </article>
 </li>

@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_07_11_125048) do
 
-  create_table "deep_relationships", force: :cascade do |t|
+  create_table "deep_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "teacher_id"
     t.integer "student_id"
     t.datetime "created_at", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_125048) do
     t.index ["teacher_id"], name: "index_deep_relationships_on_teacher_id"
   end
 
-  create_table "health_records", force: :cascade do |t|
+  create_table "health_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "measured_at", null: false
     t.float "height"
     t.float "weight", null: false
@@ -32,14 +32,14 @@ ActiveRecord::Schema.define(version: 2020_07_11_125048) do
     t.float "bmi"
     t.text "note"
     t.string "picture"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "measured_at"], name: "index_health_records_on_user_id_and_measured_at", unique: true
     t.index ["user_id"], name: "index_health_records_on_user_id"
   end
 
-  create_table "meal_records", force: :cascade do |t|
+  create_table "meal_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "ate_at", null: false
     t.string "food"
     t.float "ate_gram"
@@ -50,16 +50,16 @@ ActiveRecord::Schema.define(version: 2020_07_11_125048) do
     t.integer "base_gram"
     t.text "note"
     t.string "picture"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "ate_at"], name: "index_meal_records_on_user_id_and_ate_at"
     t.index ["user_id"], name: "index_meal_records_on_user_id"
   end
 
-  create_table "microposts", force: :cascade do |t|
+  create_table "microposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_125048) do
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", null: false
@@ -77,11 +77,11 @@ ActiveRecord::Schema.define(version: 2020_07_11_125048) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "replies", force: :cascade do |t|
+  create_table "replies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content"
     t.integer "reply_id"
-    t.integer "user_id"
-    t.integer "micropost_id"
+    t.bigint "user_id"
+    t.bigint "micropost_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["micropost_id", "created_at"], name: "index_replies_on_micropost_id_and_created_at"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_125048) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
@@ -106,4 +106,9 @@ ActiveRecord::Schema.define(version: 2020_07_11_125048) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "health_records", "users"
+  add_foreign_key "meal_records", "users"
+  add_foreign_key "microposts", "users"
+  add_foreign_key "replies", "microposts"
+  add_foreign_key "replies", "users"
 end

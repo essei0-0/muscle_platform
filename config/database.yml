@@ -10,6 +10,8 @@ development:
   <<: *default
   database: muscle_platform_development
 
+
 test:
   <<: *default
   database: muscle_platform_test
+

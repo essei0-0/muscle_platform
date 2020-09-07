@@ -9,6 +9,8 @@ services:
       - public-data:/muscle_platform/public
       - tmp-data:/muscle_platform/tmp
       - log-data:/muscle_platform/log
+    environment:
+      RAILS_ENV: production
 
   web:
     build:

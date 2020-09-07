@@ -11,7 +11,7 @@ services:
       - log-data:/muscle_platform/log
     environment:
       RAILS_ENV: production
-
+      
   web:
     build:
       context: containers/nginx

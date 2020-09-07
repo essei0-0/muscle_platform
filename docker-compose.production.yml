@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+    command: bundle exec puma -C config/puma.rb
+    volumes:
+      - .:/muscle_platform
+      - public-data:/muscle_platform/public
+      - tmp-data:/muscle_platform/tmp
+      - log-data:/muscle_platform/log
+
+  web:
+    build:
+      context: containers/nginx
+    volumes:
+      - public-data:/muscle_platform/public
+      - tmp-data:/muscle_platform/tmp
+    ports:
+      - 80:80
+    depends_on:
+      - app
+volumes:
+  public-data:
+  tmp-data:
+  log-data:

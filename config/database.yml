@@ -15,3 +15,9 @@ test:
   <<: *default
   database: muscle_platform_test
 
+production:
+  <<: *default
+  database: <%= ENV['RDS_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>

@@ -13,12 +13,11 @@ jobs:
           BUNDLE_RETRY: 3
           DATABASE_HOST: 127.0.0.1
           DATABASE_USER: "root"
-          DATABASE_PASSWORD: ""
+          DATABASE_PASSWORD: "password"
           RAILS_ENV: test
 
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: circleci
 
     steps:

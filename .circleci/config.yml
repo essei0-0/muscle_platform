@@ -26,8 +26,8 @@ jobs:
       - run: rails db:create
       - run: rails db:migrate
       - run:
-          name: minitest
-          command: rails test
+          name: rspec
+          command: bin/rspec
 
 workflows:
   sample:

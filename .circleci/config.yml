@@ -11,9 +11,9 @@ jobs:
         environment:
           BUNDLE_JOBS: 4
           BUNDLE_RETRY: 3
-          DATABASE_HOST: 127.0.0.1
-          DATABASE_USER: "root"
-          DATABASE_PASSWORD: "docker"
+          DB_HOST: 127.0.0.1
+          DB_USER: "root"
+          DB_PASSWORD: "docker"
           RAILS_ENV: test
 
       - image: circleci/mysql:5.7

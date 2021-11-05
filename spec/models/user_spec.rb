@@ -12,9 +12,7 @@ RSpec.describe User, type: :model do
   end
 
   #名前が空文字であれば、無効な状態であること
-  it "is invalid with a blank name" do
-    user = User.new(name:'')
-
+  it "is invalid with a blank name"
   end
 
   #名前がnilであれば、無効な状態であること

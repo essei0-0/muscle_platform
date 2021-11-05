@@ -7,13 +7,13 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.7.0-node-browsers
-              
+
         environment:
           BUNDLE_JOBS: 4
           BUNDLE_RETRY: 3
           DATABASE_HOST: 127.0.0.1
           DATABASE_USER: "root"
-          DATABASE_PASSWORD: "password"
+          DATABASE_PASSWORD: ENV['MYSQL_ROOT_PASSWORD']
           RAILS_ENV: test
 
       - image: circleci/mysql:5.7
@@ -31,6 +31,6 @@ jobs:
           command: rails test
 
 workflows:
-  sample: 
+  sample:
     jobs:
       - build

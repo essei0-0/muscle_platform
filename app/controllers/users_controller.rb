@@ -10,8 +10,14 @@ class UsersController < ApplicationController
     @col = 'col-md-4'
   end
 
+  #get '/signup',  to: 'users#new'
   def new
-    @user = User.new
+    if logged_in?
+      redirect_to (request.referer || root_url), status: 403
+      flash[:danger] = "既にログインしています。"
+    else
+      @user = User.new
+    end
   end
 
   def create
@@ -19,7 +25,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "#{@user.name}さん、ようこそMuscle Platformへ！"
-      redirect_to root_url
+      redirect_to root_url, status: 303
     else
       render 'new'
     end

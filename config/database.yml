@@ -8,7 +8,7 @@ default: &default
 
 development:
   <<: *default
-  database: muscle_platform_development
+  database: muscle_platform_dev
 
 
 test:

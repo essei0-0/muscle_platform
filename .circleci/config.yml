@@ -10,15 +10,13 @@ jobs:
         environment:
           BUNDLE_JOBS: 4
           BUNDLE_RETRY: 3
-          DATABASE_HOST: 127.0.0.1
-          MYSQL_USER: test
-          MYSQL_PASSWORD: $MYSQL_PASSWORD
+          DATABASE_HOST: localhost
+          MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
           RAILS_ENV: test
 
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_USER: test
-          MYSQL_PASSWORD: $MYSQL_PASSWORD
+          MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
           MYSQL_DATABASE: circleci
 
     steps:

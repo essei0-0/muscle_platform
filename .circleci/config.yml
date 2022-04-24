@@ -17,7 +17,7 @@ jobs:
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-          MYSQL_DATABASE: circleci
+          MYSQL_DATABASE: muscle_platform_test
 
     steps:
       - checkout

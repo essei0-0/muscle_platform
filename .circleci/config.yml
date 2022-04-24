@@ -11,13 +11,12 @@ jobs:
           BUNDLE_JOBS: 4
           BUNDLE_RETRY: 3
           DATABASE_HOST: 127.0.0.1
-          MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
           RAILS_ENV: test
 
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-          MYSQL_DATABASE: muscle_platform_test
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_DATABASE: circleci
 
     steps:
       - checkout
@@ -29,6 +28,6 @@ jobs:
           command: bin/rspec
 
 workflows:
-  sample:
+  ci:
     jobs:
       - build

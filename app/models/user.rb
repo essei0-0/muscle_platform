@@ -21,8 +21,9 @@ class User < ApplicationRecord
   has_many :students, through: :passive_deep_relationships
 
   has_many :health_records, dependent: :destroy
-
   has_many :meal_records, dependent: :destroy
+  has_many :reposts, dependent: :destroy
+  
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   mount_uploader :image_name, ImagenameUploader
@@ -111,6 +112,10 @@ class User < ApplicationRecord
     if !birthday.nil?
     (Date.today.strftime("%Y%m%d").to_i - self.birthday.strftime("%Y%m%d").to_i) / 10000
     end
+  end
+
+  def reposted?(post_id)
+    reposts.where(micropost_id: post_id).exists?
   end
 
   private

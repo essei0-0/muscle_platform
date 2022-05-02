@@ -16,7 +16,9 @@ Rails.application.routes.draw do
       get :following, :followers, :students, :header_records, :meal_records
     end
   end
-  resources :microposts, only: [:show, :create, :destroy]
+  resources :microposts, only: [:show, :create, :destroy] do
+    resources :reposts, only: [:create, :destroy]
+  end
   resources :relationships, only: [:create, :destroy]
   resources :deep_relationships, only: [:create, :destroy]
   resources :health_records, only: [:create, :destroy]

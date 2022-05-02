@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :health_records, dependent: :destroy
   has_many :meal_records, dependent: :destroy
   has_many :reposts, dependent: :destroy
+  has_many :likes, dependent: :destroy
   
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
@@ -115,7 +116,11 @@ class User < ApplicationRecord
   end
 
   def reposted?(post_id)
-    reposts.where(micropost_id: post_id).exists?
+    reposts.exists?(micropost_id: post_id)
+  end
+
+  def liked?(post_id)
+    likes.exists?(micropost_id: post_id)
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_02_085236) do
+ActiveRecord::Schema.define(version: 2022_05_02_100636) do
 
   create_table "deep_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "teacher_id"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2022_05_02_085236) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "measured_at"], name: "index_health_records_on_user_id_and_measured_at", unique: true
     t.index ["user_id"], name: "index_health_records_on_user_id"
+  end
+
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "micropost_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["micropost_id"], name: "index_likes_on_micropost_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "meal_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -116,6 +125,8 @@ ActiveRecord::Schema.define(version: 2022_05_02_085236) do
   end
 
   add_foreign_key "health_records", "users"
+  add_foreign_key "likes", "microposts"
+  add_foreign_key "likes", "users"
   add_foreign_key "meal_records", "users"
   add_foreign_key "microposts", "users"
   add_foreign_key "replies", "microposts"

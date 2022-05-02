@@ -82,12 +82,27 @@ RSpec.describe User, type: :model do
     let(:reposted_post) { FactoryBot.create(:micropost, user: user) }
     let(:unreposted_post) { FactoryBot.create(:micropost, user: user) }
     let!(:repost) { FactoryBot.create(:repost, user: user, micropost: reposted_post) }
-    it `repostされている場合` do
+    it 'repostされている場合' do
       expect(user.reposted?(reposted_post.id)).to be_truthy
     end
 
-    it `repostされていない場合` do
+    it 'repostされていない場合' do
       expect(user.reposted?(unreposted_post.id)).to be_falsey
+    end
+  end
+
+  #likeされていればtrue, likeされていなければfalseを返す。
+  context 'liked?' do
+    let(:user) { FactoryBot.create(:user) }
+    let(:liked_post) { FactoryBot.create(:micropost, user: user) }
+    let(:unliked_post) { FactoryBot.create(:micropost, user: user) }
+    let!(:like) { FactoryBot.create(:like, user: user, micropost: liked_post) }
+    it 'likeされている場合' do
+      expect(user.liked?(liked_post.id)).to be_truthy
+    end
+
+    it 'likeされていない場合' do
+      expect(user.liked?(unliked_post.id)).to be_falsey
     end
   end
 end

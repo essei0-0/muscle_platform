@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_125048) do
+ActiveRecord::Schema.define(version: 2022_05_02_085236) do
 
   create_table "deep_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "teacher_id"
@@ -90,6 +90,15 @@ ActiveRecord::Schema.define(version: 2020_07_11_125048) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
+  create_table "reposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "micropost_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["micropost_id"], name: "index_reposts_on_micropost_id"
+    t.index ["user_id"], name: "index_reposts_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -111,4 +120,6 @@ ActiveRecord::Schema.define(version: 2020_07_11_125048) do
   add_foreign_key "microposts", "users"
   add_foreign_key "replies", "microposts"
   add_foreign_key "replies", "users"
+  add_foreign_key "reposts", "microposts"
+  add_foreign_key "reposts", "users"
 end

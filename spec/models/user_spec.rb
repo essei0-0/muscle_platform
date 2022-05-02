@@ -76,5 +76,18 @@ RSpec.describe User, type: :model do
     expect(user.errors[:password]).to include("は6文字以上で入力してください")
   end
 
+  #repostされていればtrue, repostされていなければfalseを返す。
+  context "reposted?" do
+    let(:user) { FactoryBot.create(:user) }
+    let(:reposted_post) { FactoryBot.create(:micropost, user: user) }
+    let(:unreposted_post) { FactoryBot.create(:micropost, user: user) }
+    let!(:repost) { FactoryBot.create(:repost, user: user, micropost: reposted_post) }
+    it `repostされている場合` do
+      expect(user.reposted?(reposted_post.id)).to be_truthy
+    end
 
+    it `repostされていない場合` do
+      expect(user.reposted?(unreposted_post.id)).to be_falsey
+    end
+  end
 end

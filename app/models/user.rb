@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :meal_records, dependent: :destroy
   has_many :reposts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
@@ -121,6 +123,60 @@ class User < ApplicationRecord
 
   def liked?(post_id)
     likes.exists?(micropost_id: post_id)
+  end
+
+  def create_follow_notification!(user)
+    temp = Notification.where("visitor_id = ? and visited_id = ? and action = ? ",self.id, user.id, 'follow')
+    if temp.blank?
+      notification = active_notifications.new(
+        visited_id: user.id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
+
+  def create_like_notification!(post)
+    # すでに「いいね」されているか検索
+    temp = Notification.where("visitor_id = ? and visited_id = ? and micropost_id = ? and action = ? ", self.id, post.user_id, post.id, 'like')
+    # いいねされていない場合のみ、通知レコードを作成
+    if temp.blank?
+      notification = active_notifications.new(
+        micropost_id: post.id,
+        visited_id: post.user_id,
+        action: 'like'
+      )
+      # 自分の投稿に対するいいねの場合は、通知済みとする
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
+    end
+  end
+
+  def create_reply_notification!(reply)
+    # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
+    temp_ids = Reply.where('micropost_id = ? and user_id <> ?', reply.micropost_id, self.id).ids.uniq
+    temp_ids.each do |temp_id|
+      save_reply_notification!(reply, temp_id['user_id'])
+    end
+    # まだ誰もコメントしていない場合は、投稿者に通知を送る
+    save_reply_notification!(reply, reply.micropost.user_id) if temp_ids.blank?
+  end
+
+  def save_reply_notification!(reply, visited_id)
+    # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
+    notification = active_notifications.new(
+      micropost_id: reply.micropost_id,
+      reply_id: reply.id,
+      visited_id: visited_id,
+      action: 'reply'
+    )
+    # 自分の投稿に対するコメントの場合は、通知済みとする
+    if notification.visitor_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
   end
 
   private

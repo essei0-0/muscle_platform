@@ -3,6 +3,7 @@ class Micropost < ApplicationRecord
   has_many :replies, dependent: :destroy
   has_many :reposts, dependent: :destroy
   has_many :likes,   dependent: :destroy
+  has_many :notifications, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :user_id, presence: true

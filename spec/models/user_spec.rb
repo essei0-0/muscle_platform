@@ -105,4 +105,38 @@ RSpec.describe User, type: :model do
       expect(user.liked?(unliked_post.id)).to be_falsey
     end
   end
+
+  describe 'create_follow_notification!' do
+    let(:follower) { FactoryBot.create(:user, email: 'follower@test.com' ) }
+    let(:followed) { FactoryBot.create(:user, email: 'followed@test.com' ) }
+    let!(:create_notification){ follower.create_follow_notification!(followed) }
+
+    let(:notification){ Notification.where("visitor_id = ? and visited_id = ? and action = ? ",follower.id, followed.id, 'follow') }
+    it 'notificationが登録されている' do
+      expect(notification).to exist
+    end
+  end
+
+  describe 'create_like_notification!' do
+    let(:liker) { FactoryBot.create(:user, email: 'liker@test.com' ) }
+    let(:poster) { FactoryBot.create(:user, email: 'poster@test.com' ) }
+    let(:micropost) { FactoryBot.create(:micropost, user: poster ) }
+    let!(:create_notification){ liker.create_like_notification!(micropost) }
+    let(:notification){ Notification.where("visitor_id = ? and visited_id = ? and action = ? ",liker.id, poster.id, 'like') }
+    it 'notificationが登録されている' do
+      expect(notification).to exist
+    end
+  end
+
+  describe 'create_reply_notification!' do
+    let(:replyer) { FactoryBot.create(:user, email: 'replyer@test.com' ) }
+    let(:poster) { FactoryBot.create(:user, email: 'poster@test.com' ) }
+    let(:micropost) { FactoryBot.create(:micropost, user: poster ) }
+    let(:reply) { FactoryBot.create(:reply, micropost: micropost, user: replyer ) }
+    let!(:create_notification){ replyer.create_reply_notification!(reply) }
+    let(:notification){ Notification.where("visitor_id = ? and visited_id = ? and action = ? ",replyer.id, poster.id, 'reply') }
+    it 'notificationが登録されている' do
+      expect(notification).to exist
+    end
+  end
 end

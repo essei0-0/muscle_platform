@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :micropost do
-    content { 'test' }
+    content { 'micropost_test' }
   end
 end

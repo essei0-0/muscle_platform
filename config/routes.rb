@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   resources :health_records, only: [:create, :destroy]
   resources :meal_records, only: [:edit, :create, :destroy]
   resources :replies, only: [:create, :destroy]
+  resources :notifications, only: :index
 end

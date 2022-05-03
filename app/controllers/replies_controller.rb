@@ -12,6 +12,7 @@ class RepliesController < ApplicationController
 
     if @reply.save
       flash[:success] = "投稿しました！"
+      @reply.post.create_reply_notification!(current_user, @reply.id)
       redirect_to request.referer
     else
       flash[:success] = "投稿に失敗しました！"

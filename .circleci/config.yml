@@ -7,18 +7,15 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.7.0-node-browsers
-
         environment:
           BUNDLE_JOBS: 4
           BUNDLE_RETRY: 3
           DATABASE_HOST: 127.0.0.1
-          MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
           RAILS_ENV: test
 
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-          MYSQL_DATABASE: circleci
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
     steps:
       - checkout
@@ -30,6 +27,6 @@ jobs:
           command: bin/rspec
 
 workflows:
-  sample:
+  ci:
     jobs:
       - build
